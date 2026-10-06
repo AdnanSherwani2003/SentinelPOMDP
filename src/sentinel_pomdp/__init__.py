@@ -25,6 +25,14 @@ from sentinel_pomdp.belief import (
     initial_belief,
     update_belief,
 )
+from sentinel_pomdp.information import (
+    entropy,
+    possible_observations,
+    observation_probability,
+    expected_posterior_entropy,
+    expected_information_gain,
+)
+from sentinel_pomdp.planner import rank_actions, select_action
 
 __all__ = [
     "State",
@@ -46,6 +54,13 @@ __all__ = [
     "BeliefState",
     "initial_belief",
     "update_belief",
+    "entropy",
+    "possible_observations",
+    "observation_probability",
+    "expected_posterior_entropy",
+    "expected_information_gain",
+    "rank_actions",
+    "select_action",
 ]
 
 __version__ = "0.1.0"
