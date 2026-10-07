@@ -33,6 +33,22 @@ from sentinel_pomdp.information import (
     expected_information_gain,
 )
 from sentinel_pomdp.planner import rank_actions, select_action
+from sentinel_pomdp.reward import (
+    ActionCost,
+    RewardConfig,
+    DEFAULT_REWARD_CONFIG,
+    ACTION_COSTS,
+    investigation_utility,
+    best_hypothesis,
+    answer_utility,
+    abstain_utility,
+)
+from sentinel_pomdp.decision import (
+    DecisionType,
+    Decision,
+    rank_decisions,
+    select_decision,
+)
 
 __all__ = [
     "State",
@@ -61,6 +77,18 @@ __all__ = [
     "expected_information_gain",
     "rank_actions",
     "select_action",
+    "ActionCost",
+    "RewardConfig",
+    "DEFAULT_REWARD_CONFIG",
+    "ACTION_COSTS",
+    "investigation_utility",
+    "best_hypothesis",
+    "answer_utility",
+    "abstain_utility",
+    "DecisionType",
+    "Decision",
+    "rank_decisions",
+    "select_decision",
 ]
 
 __version__ = "0.1.0"
