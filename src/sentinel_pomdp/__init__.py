@@ -49,6 +49,23 @@ from sentinel_pomdp.decision import (
     rank_decisions,
     select_decision,
 )
+from sentinel_pomdp.environment import SecurityInvestigationEnv
+from sentinel_pomdp.episode import InvestigationStep, EpisodeResult, run_episode
+from sentinel_pomdp.evaluation import (
+    EvaluationRecord,
+    EvaluationSummary,
+    StateMetrics,
+    CalibrationBin,
+    episode_to_record,
+    run_balanced_evaluation,
+    multiclass_brier_score,
+    summarize,
+    per_state_metrics,
+    confusion_matrix,
+    action_usage,
+    calibration_bins,
+    expected_calibration_error,
+)
 
 __all__ = [
     "State",
@@ -89,6 +106,23 @@ __all__ = [
     "Decision",
     "rank_decisions",
     "select_decision",
+    "SecurityInvestigationEnv",
+    "InvestigationStep",
+    "EpisodeResult",
+    "run_episode",
+    "EvaluationRecord",
+    "EvaluationSummary",
+    "StateMetrics",
+    "CalibrationBin",
+    "episode_to_record",
+    "run_balanced_evaluation",
+    "multiclass_brier_score",
+    "summarize",
+    "per_state_metrics",
+    "confusion_matrix",
+    "action_usage",
+    "calibration_bins",
+    "expected_calibration_error",
 ]
 
 __version__ = "0.1.0"
