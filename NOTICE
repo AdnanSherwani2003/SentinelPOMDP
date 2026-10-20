@@ -1,0 +1,14 @@
+SentinelPOMDP
+Copyright 2026 AdnanSherwani2003
+
+Original SentinelPOMDP project material is licensed under the Apache License,
+Version 2.0. See LICENSE for the official license text.
+
+This copyright notice applies only to original SentinelPOMDP material, not to
+third-party code, dependencies, or datasets. Their applicable copyright, license,
+and attribution notices remain in force.
+
+The Brazilian E-Commerce Public Dataset by Olist is published by Olist under
+CC BY-NC-SA 4.0 and is not redistributed with this project. The project copyright
+notice and Apache-2.0 code license do not apply to that dataset. See
+docs/data_sources_and_attribution.md for the source and separate data terms.
