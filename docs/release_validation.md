@@ -1,9 +1,8 @@
-# Public release-candidate validation
+# Public portfolio validation
 
-Scope: a locally tested portfolio/research demonstration, not production
-certification or an already published release. The confirmed copyright-holder
-identifier for original project material is AdnanSherwani2003; authorization for
-Git actions remains pending. The
+Scope: the published Implementation 20 portfolio/research system, not production
+certification. The confirmed copyright-holder identifier for original project
+material is AdnanSherwani2003. The
 [architecture](architecture.md), [quickstart](quickstart.md),
 [attribution](data_sources_and_attribution.md) and
 [limitations](limitations_and_future_work.md) describe the supported boundaries.
@@ -26,8 +25,8 @@ Actual local browser checks covered authentication, shipment support, unsupporte
 causal attribution, conflicting and missing evidence, evidence details, synthetic
 procurement matching, invalid-pack rejection and worker health/completion.
 Two explicitly synthetic result screenshots are public:
-[supported shipment](../reports/implementation20/browser_pomdp.png) and
-[missing evidence](../reports/implementation20/browser_missing_evidence.png).
+[supported shipment](../reports/implementation20/browser_pomdp.jpg) and
+[missing evidence](../reports/implementation20/browser_missing_evidence.jpg).
 Original-row Olist screenshots and raw operational traces remain private. The
 [research summary](research_data_summary.md) publishes only aggregate acceptance.
 
@@ -76,13 +75,14 @@ additional skips are archive-dependent cases. It used the existing locked Python
 dependency environment while asserting imports came from the exported source;
 the packaging regressions separately created genuinely isolated installations.
 JUnit suite time is not the same as total command wall time. Local Node verification
-used 24.14.0; configured remote CI uses Node 22 and has not been executed.
+used 24.14.0; remote CI uses Node 22. These preparation results predate the first
+published workflow run described below.
 
 The initial Mermaid 11 pin had a low-severity transitive KaTeX advisory; the
 development-only tool was upgraded to pinned Mermaid 12.2.0 before acceptance.
 The remaining jsdom transitive deprecation warning is not a reported vulnerability.
-No public push, remote CI run, production deployment, paid inference or predictive
-model activation is implied by local verification.
+These historical local results do not imply production deployment, paid inference,
+predictive model activation, or a successful remote CI run.
 
 ## Confirmed copyright identifier and packaged notice (2026-10-21)
 
@@ -109,3 +109,52 @@ included NOTICE and the diagram-tool manifests without the private archive or
 credentials. Its 27 skips are the live-store, private-archive and paid-provider
 cases, including the two optional installed-PostgreSQL cases. Raw logs remain
 private. No existing historical verification report was overwritten.
+
+## Published checkpoint and cold-cache CI correction
+
+Implementation 20 was fast-forwarded to public `main` at `7c9e246` on 2026-10-21.
+The [first GitHub Actions run](https://github.com/AdnanSherwani2003/SentinelPOMDP/actions/runs/39496782338)
+reported **323 passed, 25 skipped, 4 fixture setup errors**, not a green build.
+Dependency installation, diagrams and static checks passed; later live/container
+steps were skipped after the offline regression failed.
+
+All four errors came from the direct-wheel and sdist-rebuilt-wheel installation
+fixture's offline dependency resolution. Locked sync alone did not prepare the
+cache used by that installation path. A separate fresh-cache reproduction failed
+on already-locked `annotated-doc==0.0.5`; explicitly seeding the exported locked
+runtime requirements made the same offline installation succeed. No new direct
+dependency, mathematical change or weakened evidence gate was needed.
+
+The focused correction adds an explicit hash-checked runtime-cache bootstrap and
+a required, network-opted-in cold-cache CI regression. Subsequent artifact builds
+and isolated installations retain networking disabled. See the
+[developer commands](developer_guide.md). Any subsequent remote workflow result
+is separate from local verification; the first run above remains a failure.
+
+Local correction verification on 2026-10-21:
+
+| Check | Passed | Failed / errors | Skipped |
+|---|---:|---:|---:|
+| Windows full suite with new disposable Neo4j/PostgreSQL and cold-cache opt-in | 354 | 0 / 0 | 2 |
+| Fresh Linux source export, prepared cache, full offline suite | 328 | 0 / 0 | 28 |
+| Windows clean-install script with a new cache and archive-free export | 328 | 0 / 0 | 28 |
+| Dedicated Linux empty-cache regression | 1 | 0 / 0 | 0 |
+| Dedicated Windows empty-cache regression | 1 | 0 / 0 | 0 |
+
+The full suites collect 356 cases, four more than the original baseline: one
+end-to-end cold-cache regression and three bootstrap/workflow boundary tests.
+The Windows run skips only disabled paid providers. The archive-free Linux run
+also skips unavailable live stores and two archive-dependent cases; its
+network-opted-in cold-cache case ran separately rather than during the offline
+phase. Runs overlap and must not be added as unique test counts. The cache tests
+install both direct and sdist-rebuilt wheels with networking disabled and verify
+SQLite/API startup without source fallback. The full live run also passes both
+installed PostgreSQL cases. A separate direct offline install from the actual
+`.tar.gz` source distribution also passed the resource, SQLite and API probes.
+No research database or original volume was targeted.
+
+All eight diagrams parse and both screenshots retain their original JPEG bytes
+under accurate `.jpg` names. No dependency declaration or lockfile changed.
+These are local Windows and disposable Linux-container results, not a new
+GitHub Actions success. Check [Actions](https://github.com/AdnanSherwani2003/SentinelPOMDP/actions)
+for the actual remote conclusion after an owner-approved correction push.

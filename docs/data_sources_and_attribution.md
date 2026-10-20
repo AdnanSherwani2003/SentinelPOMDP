@@ -24,7 +24,7 @@ The code license does not relicense Olist data or grant additional rights over i
 Public research material is limited to reviewed aggregate statistics, evaluation
 metrics, methodology and source-file hashes. Local imports, original CSV rows,
 operational traces, raw-row screenshots and data-derived candidate model weights
-remain private in this release proposal. Reports describe filtering, date comparison
+remain private and are excluded from the public repository. Reports describe filtering, date comparison
 and chronological evaluation rather than presenting modified records as originals.
 No approval to redistribute raw files or to use Olist commercially is implied.
 

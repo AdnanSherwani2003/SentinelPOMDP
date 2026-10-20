@@ -21,11 +21,15 @@ foreach ($i20File in $i20Files) {
 }
 $env:RUN_LIVE_GROQ_TESTS = '0'
 $env:RUN_LIVE_LLM_TESTS = '0'
+$env:RUN_COLD_CACHE_PACKAGING_TESTS = '0'
 $env:NEO4J_URI = 'bolt://127.0.0.1:17688'
 Remove-Item Env:SENTINEL_TEST_OPERATIONS_DATABASE_URL -ErrorAction SilentlyContinue
+Remove-Item Env:SENTINEL_PACKAGE_TEST_POSTGRES_URL -ErrorAction SilentlyContinue
 Remove-Item Env:SENTINEL_I19_DISPOSABLE_NEO4J -ErrorAction SilentlyContinue
 uv sync --directory $i20Export --frozen --group dev
 if ($LASTEXITCODE -ne 0) { throw 'Isolated installation failed' }
+uv run --directory $i20Export --frozen python (Join-Path $i20Export 'scripts/prepare_package_test_cache.py')
+if ($LASTEXITCODE -ne 0) { throw 'Locked runtime cache preparation failed' }
 uv run --directory $i20Export --frozen pytest -q -rs --junitxml="$JUnitXml"
 $i20Result = $LASTEXITCODE
 Write-Output "Isolated source export retained at $i20Export; no original Olist archive or local credentials copied."

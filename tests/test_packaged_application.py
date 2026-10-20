@@ -1,7 +1,10 @@
 """Build/install real artifacts without relying on editable source or local data.
 
-Run `uv sync --frozen --group dev` first. Dependencies/build requirements must be
-available in uv's cache; these regressions do not contact an LLM or existing DB.
+Run `uv sync --frozen --group dev`, then
+`uv run python scripts/prepare_package_test_cache.py` first. The explicit bootstrap
+may fetch locked packages; normal artifact builds/installations remain offline.
+The network-opt-in cold-cache regression exercises that bootstrap from scratch.
+These regressions do not contact an LLM or existing DB.
 Optional PostgreSQL checks require a separately provisioned disposable database.
 """
 from __future__ import annotations
@@ -44,6 +47,14 @@ def run(*args, cwd, env=None):
     return result.stdout
 
 
+def copy_package_source(source):
+    source.mkdir()
+    for name in ("pyproject.toml", "uv.lock", "README.md", "LICENSE", "NOTICE"):
+        shutil.copy2(ROOT / name, source / name)
+    shutil.copytree(ROOT / "src" / "sentinel_pomdp", source / "src" / "sentinel_pomdp",
+                    ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+
+
 @pytest.fixture(scope="module")
 def artifacts(tmp_path_factory):
     uv = shutil.which("uv")
@@ -51,12 +62,8 @@ def artifacts(tmp_path_factory):
         pytest.skip("packaging regression requires uv; install the documented developer tool")
     work = tmp_path_factory.mktemp("sentinel-package")
     source = work / "source"
-    source.mkdir()
-    for name in ("pyproject.toml", "uv.lock", "README.md", "LICENSE", "NOTICE"):
-        shutil.copy2(ROOT / name, source / name)
     # No existing egg-info/SOURCES cache, Git index, private data or environment.
-    shutil.copytree(ROOT / "src" / "sentinel_pomdp", source / "src" / "sentinel_pomdp",
-                    ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    copy_package_source(source)
     dist = work / "dist"
     run(uv, "build", "--offline", "--out-dir", dist, cwd=source)
     wheel = next(dist.glob("*.whl"))
@@ -68,6 +75,46 @@ def artifacts(tmp_path_factory):
         "--format", "requirements-txt", "--output-file", requirements, cwd=source)
     return {"uv": uv, "work": work, "wheel": wheel, "sdist": sdist,
             "sdist_wheel": next(rebuilt.glob("*.whl")), "requirements": requirements}
+
+
+@pytest.mark.skipif(os.getenv("RUN_COLD_CACHE_PACKAGING_TESTS") != "1",
+                    reason="cold-cache bootstrap requires explicit registry-network opt-in; CI runs it separately")
+def test_fresh_cache_bootstrap_and_offline_artifact_install(tmp_path):
+    uv = shutil.which("uv")
+    assert uv, "cold-cache regression requires the documented uv tool"
+    source = tmp_path / "source"
+    copy_package_source(source)
+    cache = tmp_path / "empty-uv-cache"
+    assert not cache.exists()
+    env = clean_environment()
+    env.pop("UV_OFFLINE", None)  # This test is explicitly network-opted-in above.
+    env.update(UV_CACHE_DIR=str(cache), UV_PYTHON_DOWNLOADS="never")
+    lock_hash = hashlib.sha256((source / "uv.lock").read_bytes()).hexdigest()
+    run(uv, "sync", "--frozen", "--group", "dev", "--python", sys.executable, cwd=source, env=env)
+    run(sys.executable, ROOT / "scripts/prepare_package_test_cache.py", "--project", source,
+        "--cache-dir", cache, cwd=source, env=env)
+    env["UV_OFFLINE"] = "1"
+    dist = tmp_path / "dist"
+    run(uv, "build", "--offline", "--out-dir", dist, cwd=source, env=env)
+    rebuilt = tmp_path / "rebuilt"
+    run(uv, "build", next(dist.glob("*.tar.gz")), "--wheel", "--offline", "--out-dir", rebuilt,
+        cwd=tmp_path, env=env)
+    requirements = tmp_path / "runtime-requirements.txt"
+    run(uv, "export", "--frozen", "--no-dev", "--no-editable", "--no-emit-project",
+        "--format", "requirements-txt", "--output-file", requirements, cwd=source, env=env)
+    digests = {name: hashlib.sha256((ROOT / "src/sentinel_pomdp" / name).read_bytes()).hexdigest()
+               for name in RESOURCES}
+    for index, wheel in enumerate((next(dist.glob("*.whl")), next(rebuilt.glob("*.whl")))):
+        work = tmp_path / f"installed-{index}"
+        work.mkdir()
+        venv = work / "venv"
+        run(uv, "venv", "--python", sys.executable, venv, cwd=work, env=env)
+        python = venv / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+        run(uv, "pip", "install", "--offline", "--no-deps", "--python", python,
+            "--requirement", requirements, wheel, cwd=work, env=env)
+        assert "PASS" in run(python, "-I", "-B", "-c", SQLITE_AND_API_PROBE, json.dumps(digests),
+                             cwd=work, env=env)
+    assert hashlib.sha256((source / "uv.lock").read_bytes()).hexdigest() == lock_hash
 
 
 def test_wheel_contains_exact_runtime_resources_and_license(artifacts):

@@ -2,6 +2,9 @@
 
 Install the locked development group with `uv sync --frozen --group dev`. The dev
 group now includes pytest, so tests do not rely on an earlier global installation.
+Then run `uv run --no-sync python scripts/prepare_package_test_cache.py` to prepare
+the locked runtime cache required by isolated offline installations. This explicit
+bootstrap may access the registry; locked sync alone is insufficient on a cold cache.
 Python 3.13 is the tested interpreter. Build a package with `uv build`; the wheel
 includes browser assets, both SQL migrations, LICENSE and the scoped project NOTICE.
 Raw data and local credentials do
@@ -37,10 +40,25 @@ The packaged-application regressions build from a clean source copy, inspect the
 wheel/sdist, rebuild a wheel from the sdist, then install each wheel into a separate
 virtual environment. They verify runtime hashes, SQLite schema initialization and
 reopen, tenant denial, static assets and a fake-provider API answer without
-editable-source fallback. They use uv's offline cache: run the locked sync above
-first. The optional PostgreSQL cases require an explicitly disposable database
+editable-source fallback. Builds and installs remain offline after the explicit
+cache preparation above. The optional PostgreSQL cases require an explicitly disposable database
 whose name starts with `sentinel_package_test`; never use research/production
 credentials. Missing opt-in is a reported skip, not proof of PostgreSQL startup.
+
+CI also runs the cold-cache regression with explicit registry-network opt-in:
+
+```powershell
+$env:RUN_COLD_CACHE_PACKAGING_TESTS = '1'
+uv run --no-sync pytest -q -rs tests/test_packaged_application.py::test_fresh_cache_bootstrap_and_offline_artifact_install
+Remove-Item Env:RUN_COLD_CACHE_PACKAGING_TESTS
+```
+
+It uses a newly allocated empty uv cache, frozen sync and the same bootstrap
+helper, then disables networking for wheel/sdist builds and separate installed
+application probes. This test is skipped during routine offline runs; CI runs
+it as a required separate step. No existing cache is cleared. Keep paid-provider
+tests disabled. Optional test database URLs must point only to new disposable
+stores, never research data.
 
 For the retained, lockfile-based Mermaid checker, see [diagram verification](diagram_verification.md).
 
@@ -56,7 +74,9 @@ protected lifecycle endpoints. See domain_pack_schema.md and adding_a_domain.md.
 Release preparation is manual: review a locally generated exact-path manifest,
 exclude generated files already tracked, inspect reports for source content, then ask the
 owner before staging uncertain files, committing, tagging or publishing. Git ignore
-rules do not remove tracked files. Remote CI is configured but has not been
-triggered in I20; no push was made to create a green badge.
+rules do not remove tracked files. The published I20 checkpoint retains existing
+history; its first remote CI run exposed the cold-cache packaging setup defect.
+See the current status in [public validation](release_validation.md); do not infer
+remote success from local passes or rewrite historical measurements.
 Local audit inventories, original-row evidence and raw test logs are ignored, not
 public developer prerequisites. See [public validation](release_validation.md).

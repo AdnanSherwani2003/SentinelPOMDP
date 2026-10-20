@@ -59,7 +59,7 @@ so real-world POMDP advantage remains NOT EVALUABLE. Procurement is synthetic an
 has no validated business-accuracy estimate.
 
 Engineering results and exact I20 test counts are recorded in the final acceptance
-report. This is a local portfolio/research release candidate, not a production
+report. This is a published portfolio/research system, not a production
 certification. Lessons include treating abstention as a valid outcome, separating
 probability from evidence sufficiency, exercising actual startup/restore commands,
 and preserving inconvenient benchmark findings.

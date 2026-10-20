@@ -54,6 +54,7 @@ background workers use PostgreSQL coordination.
 git clone https://github.com/AdnanSherwani2003/SentinelPOMDP.git
 Set-Location SentinelPOMDP
 uv sync --frozen --group dev
+uv run --no-sync python scripts/prepare_package_test_cache.py
 $env:RUN_LIVE_GROQ_TESTS = '0'
 $env:RUN_LIVE_LLM_TESTS = '0'
 uv run pytest -q -rs
@@ -66,11 +67,12 @@ under ignored `data/demo/`; use its API key in the console. It initializes
 explicitly synthetic evidence and an authorized demo reviewer. No Olist download,
 private organizational documents or external inference is needed.
 
-The current working tree contains the release candidate. The remote repository
-will not contain these changes until the owner reviews and authorizes a commit
-and push. Local staging inventories and operational evidence are intentionally
-private; the [public validation summary](docs/release_validation.md) describes
-what was checked without publishing local records.
+The complete Implementation 20 is published on the default `main` branch.
+Dependency installation and the explicit package-cache bootstrap may access the
+package registry; subsequent isolated package installation tests run offline.
+Local inventories and operational evidence remain private. The
+[public validation summary](docs/release_validation.md) distinguishes local checks
+from GitHub Actions results and records verification limitations.
 
 For detailed setup, credential handling, shutdown and optional read-only Olist
 access, see [quickstart](docs/quickstart.md) and [demo walkthrough](docs/demo_walkthrough.md).
@@ -119,7 +121,8 @@ powershell -NoProfile -File scripts/verify_multidomain_live.ps1
 ```
 
 Paid-provider tests are explicitly opt-in and remain disabled in routine checks.
-Remote CI configuration is provided; local validation does not prove remote CI ran.
+GitHub Actions runs on pushes and pull requests. Check its actual conclusion;
+local validation alone is not a green remote CI result.
 
 [Developer guide](docs/developer_guide.md) · [API reference](docs/api_reference.md) ·
 [Domain authoring](docs/adding_a_domain.md) · [Deployment runbook](docs/deployment_runbook.md) ·

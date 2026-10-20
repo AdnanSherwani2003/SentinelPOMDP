@@ -22,5 +22,6 @@ The equivalent check after installation is `node scripts/validate_diagrams.mjs`.
 The script resolves paths relative to itself, not the caller's working directory.
 Success reports the number of parsed blocks; malformed diagrams cause nonzero
 exit. Check [release validation](release_validation.md) for actual verification
-results. Remote rendering and remote CI are separate, unverified steps until an
-owner-authorized publication/run occurs.
+results. The first published GitHub Actions run passed the diagram-parser step
+but failed later in packaging-test setup. Parser success does not certify the
+browser-rendered graphics or the entire CI workflow; check the actual run result.

@@ -2,6 +2,8 @@
   "date": "2026-10-21",
   "test_execution_date": "2026-10-20",
   "scope": "local preparation only; no Git index/history/publication action",
+  "record_type": "historical pre-publication verification; not current CI status",
+  "publication_context": "Implementation 20 was subsequently published at 7c9e246; see docs/release_validation.md for the first CI failure and focused correction.",
   "copyright_holder": "AdnanSherwani2003",
   "copyright_scope": "original SentinelPOMDP material only; excludes third-party code and Olist data",
   "code_license": "Apache-2.0",
@@ -49,7 +51,7 @@
     "Source datasets, original-row operational evidence, local inventories and raw logs remain private.",
     "Remote CI and production deployment have not been run.",
     "Copyright-holder identifier is the explicitly confirmed GitHub username, not an invented legal name.",
-    "Historical bytecode in Git history is not removed by a proposed future index cleanup.",
+    "The approved index cleanup removed generated files from HEAD, not from historical commits.",
     "Dependency advisory results are point-in-time, not a security certification."
   ]
 }

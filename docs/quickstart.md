@@ -1,17 +1,23 @@
 # Local quickstart
 
-Use the reviewed release candidate working tree. The remote repository will contain
-it only after the owner authorizes a commit and push. Tested environment: Windows,
-PowerShell, Python 3.13, uv and Docker Desktop with Linux containers. Locked package
-versions are in uv.lock. Other platforms are not claimed as verified.
+The complete Implementation 20 is published on the repository's default `main`
+branch. Tested local environment: Windows, PowerShell, Python 3.13, uv and Docker
+Desktop with Linux containers. Locked package versions are in uv.lock; see
+[validation](release_validation.md) for actual GitHub Actions results and limits.
 
 ```powershell
 uv sync --frozen --group dev
+uv run --no-sync python scripts/prepare_package_test_cache.py
 $env:RUN_LIVE_GROQ_TESTS = '0'
 $env:RUN_LIVE_LLM_TESTS = '0'
 uv run pytest -q -rs
 powershell -NoProfile -File scripts/start_demo.ps1 -Project sentinel-demo-local -Port 18082
 ```
+
+The first two commands may fetch locked dependencies. The cache bootstrap installs
+only exported, hash-pinned runtime requirements in a temporary environment; it
+does not run an LLM or connect to a database. Subsequent package tests use offline
+installation. An existing `UV_OFFLINE=1` is respected, not silently overridden.
 
 The script creates a separate Compose project, new named demo volumes and a private
 ignored file at data/demo/sentinel-demo-local.env. It never resets existing data.
