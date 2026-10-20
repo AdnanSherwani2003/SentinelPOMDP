@@ -27,17 +27,30 @@ def initial_belief() -> BeliefState:
     }
 
 
+def balanced_belief() -> BeliefState:
+    """Uninformative uniform prior across all discrete security states."""
+    prob = 1.0 / len(SecurityState)
+    return {state: prob for state in SecurityState}
+
+
 def update_belief(
     belief: BeliefState,
     action: InvestigationAction,
     observation: Observation,
+    observation_model: dict | None = None,
 ) -> BeliefState:
+    obs_model = OBSERVATION_MODEL if observation_model is None else observation_model
+    if (not belief or any(not math.isfinite(p) or p < 0 or p > 1 for p in belief.values())
+            or abs(sum(belief.values()) - 1.0) > 1e-9):
+        raise ValueError("Belief probabilities must be finite, nonnegative and normalized")
     unnormalized: BeliefState = {}
 
     for state, prior_probability in belief.items():
         observation_probability = (
-            OBSERVATION_MODEL[action][state].get(observation, 0.0)
+            obs_model[action][state].get(observation, 0.0)
         )
+        if not math.isfinite(observation_probability) or not 0 <= observation_probability <= 1:
+            raise ValueError("Observation likelihood must be finite and in [0, 1]")
 
         unnormalized[state] = (
             observation_probability * prior_probability
@@ -104,6 +117,8 @@ class BeliefDistribution:
 
     def normalize(self) -> "BeliefDistribution":
         """Normalize distribution so probabilities sum to 1.0."""
+        if not self._probs or any(not math.isfinite(p) or p < 0 for p in self._probs.values()):
+            raise ValueError("Belief weights must be nonempty, finite and nonnegative")
         total = sum(self._probs.values())
         if total <= 0:
             # Fallback to uniform if sum is zero or invalid

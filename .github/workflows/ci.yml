@@ -1,0 +1,80 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.5"
+          enable-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install locked dependencies
+        run: uv sync --frozen --group dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tools/diagrams/package-lock.json
+      - name: Check diagrams with locked development tools
+        run: |
+          npm ci --prefix tools/diagrams --include=dev --ignore-scripts
+          npm run --prefix tools/diagrams check
+      - name: Static and secret checks
+        run: |
+          uv run python -m compileall -q src scripts tests
+          uv run python scripts/check_secrets.py
+          git diff --check
+      - name: Offline regression including isolated installed-package tests
+        env:
+          RUN_LIVE_GROQ_TESTS: "0"
+          RUN_LIVE_LLM_TESTS: "0"
+        run: uv run pytest -q -rs
+      - name: Start disposable Neo4j
+        run: |
+          NEO4J_PASSWORD="$(python -c 'import secrets; print(secrets.token_urlsafe(24))')"
+          echo "::add-mask::$NEO4J_PASSWORD"
+          echo "NEO4J_PASSWORD=$NEO4J_PASSWORD" >> "$GITHUB_ENV"
+          echo "NEO4J_URI=bolt://localhost:7687" >> "$GITHUB_ENV"
+          echo "NEO4J_USER=neo4j" >> "$GITHUB_ENV"
+          docker run -d --name sentinel-ci-neo4j -p 7687:7687 \
+            -e "NEO4J_AUTH=neo4j/$NEO4J_PASSWORD" neo4j:5.26-community
+          for attempt in $(seq 1 30); do
+            docker exec sentinel-ci-neo4j cypher-shell -u neo4j -p "$NEO4J_PASSWORD" \
+              'RETURN 1' >/dev/null 2>&1 && exit 0
+            sleep 2
+          done
+          docker logs sentinel-ci-neo4j
+          exit 1
+      - name: Live Neo4j integration
+        env:
+          RUN_LIVE_GROQ_TESTS: "0"
+          RUN_LIVE_LLM_TESTS: "0"
+        run: uv run pytest -q -v -rs tests/test_security_live.py tests/test_api_live.py
+      - name: Package and contract checks
+        run: |
+          uv build
+          NEO4J_AUTH='neo4j/ci-placeholder-password' \
+          NEO4J_PASSWORD='ci-placeholder-password' \
+          SENTINEL_API_KEY='ci-placeholder-api-key-32-characters' \
+          POSTGRES_PASSWORD='ci-placeholder-postgres-password' \
+          docker compose -f infra/deployment.compose.yaml config --quiet
+          docker build --tag sentinel-pomdp:ci .
+      - name: Lightweight reproducibility benchmark
+        run: uv run python scripts/evaluate_final.py --episodes-per-state 2 --seed 13000 --output-dir reports/ci
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-benchmark-smoke
+          path: reports/ci/

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evidence-grounded autonomous investigation interface">
+  <title>SentinelPOMDP · Investigation Console</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to investigation</a>
+  <header class="topbar">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-hidden="true">S</div>
+      <div><strong>SentinelPOMDP</strong><span>Evidence intelligence console</span></div>
+    </div>
+    <div class="system-strip" aria-label="System status">
+      <span id="connection-status" class="status-dot pending">Checking API</span>
+      <span id="provider-mode" class="mode-chip">Provider —</span>
+      <span id="session-status" class="mode-chip">Not authenticated</span>
+      <button id="clear-key" class="text-button" type="button" disabled>Clear key</button>
+    </div>
+  </header>
+
+  <main id="workspace" class="shell">
+    <section class="hero-panel">
+      <div>
+        <p class="eyebrow">AUTONOMOUS EVIDENCE REVIEW</p>
+        <h1>Ask a question.<br><span>Inspect the reasoning.</span></h1>
+        <p class="intro">Sentinel selects investigations mathematically, verifies provenance, and answers only when the evidence gate permits it.</p>
+      </div>
+      <div class="auth-card" aria-labelledby="auth-title">
+        <div class="section-heading"><span>01</span><h2 id="auth-title">Authenticate</h2></div>
+        <label for="api-key">Local API key</label>
+        <div class="inline-control">
+          <input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="Enter configured key">
+          <button id="authenticate" class="secondary-button" type="button">Use key</button>
+        </div>
+        <p class="field-note">Held only in this page's memory. Never placed in browser storage or a URL.</p>
+        <p id="auth-feedback" class="feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="query-card" aria-labelledby="query-title">
+      <div class="section-heading"><span>02</span><h2 id="query-title">Open an investigation</h2></div>
+      <form id="investigation-form">
+        <label for="question">Natural-language question</label>
+        <textarea id="question" maxlength="2000" rows="3" required disabled placeholder="Was Supplier A's shipment late?"></textarea>
+        <div class="mode-controls">
+          <div><label for="investigation-mode">Reasoning mode</label><select id="investigation-mode" disabled>
+            <option value="registered_pomdp">Registered demonstration POMDP</option>
+            <option value="document_lookup">Approved document lookup</option>
+            <option value="domain_pomdp">Approved domain-pack POMDP</option>
+          </select></div>
+          <div><label for="domain-pack-id">Domain pack ID</label><input id="domain-pack-id" disabled placeholder="delivery_delay"></div>
+        </div>
+        <div class="query-footer">
+          <div class="examples" aria-label="Example questions">
+            <button type="button" data-question="Was Supplier A's shipment late?">Shipment lateness</button>
+            <button type="button" data-question="Did Supplier A cause the entire production delay?">Causal attribution</button>
+            <button type="button" data-question="Did Supplier B deliver on time?">Conflicting evidence</button>
+            <button type="button" data-question="Is Component A certified?">Missing evidence</button>
+          </div>
+          <button id="submit-question" class="primary-button" type="submit" disabled>
+            <span>Investigate</span><span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </form>
+      <div id="request-feedback" class="request-feedback" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="company-data" class="query-card company-card hidden" aria-labelledby="company-title">
+      <div class="section-heading"><span>03</span><h2 id="company-title">Company data</h2></div>
+      <p class="field-note">Files remain tenant-scoped. Extracted facts require reviewer approval before publication.</p>
+      <form id="upload-form" class="mode-controls">
+        <div><label for="dataset-id">Dataset ID</label><div class="inline-control"><input id="dataset-id" value="delivery" required><button id="configure-dataset" class="text-button" type="button">Create standard mapping</button></div></div>
+        <div><label for="source-group">Independent source group</label><input id="source-group" placeholder="Optional export or system ID"></div>
+        <div><label for="company-file">CSV, PDF, XLSX, DOCX, or TXT</label><input id="company-file" type="file" accept=".csv,.pdf,.xlsx,.docx,.txt" required></div>
+        <button class="secondary-button" type="submit">Upload securely</button>
+      </form>
+      <p id="company-feedback" class="feedback" role="status" aria-live="polite"></p>
+      <div class="two-column company-lists"><section><h3>Documents</h3><div id="company-documents" class="data-list"></div></section><section><h3>Review queue</h3><div id="review-candidates" class="data-list"></div></section></div>
+      <section class="model-review"><div class="panel-title"><div><p class="eyebrow">PILOT GOVERNANCE</p><h3>Calibration models</h3></div><span id="real-validation-status" class="mode-chip">Not evaluated</span></div><div id="calibration-models" class="data-list"></div></section>
+      <section class="model-review" aria-labelledby="olist-title">
+        <div class="panel-title"><div><p class="eyebrow">OLIST RESEARCH DATA</p><h3 id="olist-title">Historical facts and prospective risk</h3></div><span id="olist-status" class="mode-chip">Not configured</span></div>
+        <p id="olist-dataset-detail" class="field-note">Historical facts use approved source rows. Risk estimates require a separately approved temporal model.</p>
+        <div class="mode-controls">
+          <div><label for="olist-order-id">Imported order ID</label><input id="olist-order-id" maxlength="64" placeholder="Enter an authorized imported order ID"></div>
+          <div><label for="olist-mode">Mode</label><select id="olist-mode"><option value="historical">Historical factual lookup</option><option value="PURCHASE">Prospective purchase snapshot</option><option value="APPROVAL">Prospective approval snapshot</option><option value="CARRIER_HANDOFF">Prospective carrier-handoff snapshot</option></select></div>
+          <button id="olist-investigate" class="secondary-button" type="button">Investigate order</button>
+          <button id="olist-source" class="secondary-button" type="button" disabled>Open source row</button>
+        </div>
+        <p id="olist-result-kind" class="feedback" role="status"></p>
+        <pre id="olist-result" class="field-note" aria-live="polite"></pre>
+        <pre id="olist-source-result" class="field-note" aria-live="polite"></pre>
+      </section>
+    </section>
+
+    <section id="domain-management" class="query-card company-card hidden" aria-labelledby="domains-title">
+      <div class="panel-title">
+        <div><p class="eyebrow">MULTI-DOMAIN GOVERNANCE</p><h2 id="domains-title">Domain management</h2></div>
+        <button id="refresh-domains" class="secondary-button" type="button">Refresh</button>
+      </div>
+      <p class="field-note">Only validated, reviewer-approved versions can become active. Synthetic demonstrations are not production models.</p>
+      <div id="domain-registry" class="data-list" aria-live="polite"></div>
+      <div class="model-review two-column">
+        <section>
+          <h3>Validate a declarative draft</h3>
+          <label for="domain-json">Domain-pack JSON</label>
+          <textarea id="domain-json" placeholder="Paste a domain-pack draft. Executable fields and unknown tools are rejected."></textarea>
+          <div class="inline-control">
+            <button id="validate-domain" class="secondary-button" type="button">Validate</button>
+            <button id="save-domain" class="secondary-button" type="button" disabled>Save validated draft</button>
+          </div>
+          <pre id="domain-validation" class="field-note" aria-live="polite"></pre>
+        </section>
+        <section>
+          <h3>Run a version-pinned factual investigation</h3>
+          <label for="domain-selector">Approved domain</label>
+          <select id="domain-selector"></select>
+          <label for="domain-question">Question</label>
+          <input id="domain-question" placeholder="Does invoice INV-1001 match PO-2001?">
+          <button id="run-domain" class="secondary-button" type="button">Investigate</button>
+          <pre id="domain-result" class="field-note" aria-live="polite"></pre>
+        </section>
+      </div>
+      <p id="domain-feedback" class="feedback" role="status"></p>
+    </section>
+
+    <section id="operations" class="query-card company-card hidden" aria-labelledby="operations-title">
+      <div class="panel-title">
+        <div><p class="eyebrow">DURABLE OPERATIONS</p><h2 id="operations-title">Jobs and worker health</h2></div>
+        <button id="refresh-operations" class="secondary-button" type="button">Refresh</button>
+      </div>
+      <p class="field-note">Pending, retrying, and cancellation-requested work is not complete.</p>
+      <div id="operations-health" class="operations-health" aria-live="polite"></div>
+      <div id="operations-jobs" class="data-list" aria-live="polite"></div>
+      <p id="operations-feedback" class="feedback" role="status"></p>
+    </section>
+
+    <section id="results" class="results hidden" aria-live="polite">
+      <article class="decision-card">
+        <div class="decision-topline">
+          <p class="eyebrow">AUTHORITATIVE OUTCOME</p>
+          <span id="decision-badge" class="decision-badge"></span>
+        </div>
+        <h2 id="decision-title"></h2>
+        <p id="explanation" class="explanation"></p>
+        <div class="outcome-meta">
+          <div><span>Scenario</span><strong id="scenario"></strong></div>
+          <div><span>Evidence gate</span><strong id="provenance"></strong></div>
+          <div><span>Selected hypothesis</span><strong id="hypothesis"></strong></div>
+          <div><span>Investigation cost</span><strong id="cost"></strong></div>
+        </div>
+        <p id="limitation" class="limitation hidden"></p>
+      </article>
+
+      <div class="two-column">
+        <article class="panel">
+          <div class="panel-title"><div><p class="eyebrow">BELIEF STATE</p><h2>Posterior probabilities</h2></div><span class="legend">Prior → Final</span></div>
+          <div id="belief-chart" class="belief-chart"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><div><p class="eyebrow">PROVENANCE</p><h2>Evidence references</h2></div></div>
+          <div class="evidence-groups">
+            <section><h3><span class="evidence-icon support">+</span> Supporting</h3><div id="supporting-evidence" class="evidence-list"></div></section>
+            <section><h3><span class="evidence-icon contradict">!</span> Contradicting</h3><div id="contradicting-evidence" class="evidence-list"></div></section>
+            <section><h3><span class="evidence-icon document">↗</span> Source documents</h3><div id="documents" class="evidence-list"></div></section>
+          </div>
+        </article>
+      </div>
+
+      <article class="panel timeline-panel">
+        <div class="panel-title"><div><p class="eyebrow">DECISION TRACE</p><h2>Investigation timeline</h2></div><span id="step-count" class="mode-chip"></span></div>
+        <div id="timeline" class="timeline"></div>
+      </article>
+
+      <details class="technical-panel">
+        <summary>Technical details</summary>
+        <dl id="technical-details"></dl>
+      </details>
+    </section>
+  </main>
+
+  <dialog id="evidence-dialog">
+    <button id="close-dialog" class="dialog-close" type="button" aria-label="Close evidence details">×</button>
+    <p class="eyebrow">AUTHORIZED EVIDENCE</p>
+    <h2 id="dialog-title"></h2>
+    <div id="dialog-content"></div>
+  </dialog>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

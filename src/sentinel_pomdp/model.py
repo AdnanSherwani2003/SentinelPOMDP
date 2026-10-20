@@ -136,26 +136,152 @@ OBSERVATION_MODEL = {
 }
 
 
-def validate_observation_model() -> None:
+
+# Versioned calibrated observation model (v2_calibrated):
+# Encodes identifiable diagnostic conditional probabilities P(o | s, a) where each
+# hypothesis exhibits distinct, separable observation signatures.
+CALIBRATED_OBSERVATION_MODEL = {
+    InvestigationAction.INSPECT_AUTH: {
+        SecurityState.BENIGN: {
+            Observation.AUTH_NORMAL: 0.90,
+            Observation.AUTH_UNUSUAL_LOGIN: 0.08,
+            Observation.AUTH_MFA_ANOMALY: 0.02,
+        },
+        SecurityState.CREDENTIAL_COMPROMISE: {
+            Observation.AUTH_NORMAL: 0.05,
+            Observation.AUTH_UNUSUAL_LOGIN: 0.35,
+            Observation.AUTH_MFA_ANOMALY: 0.60,
+        },
+        SecurityState.MALWARE_COMPROMISE: {
+            Observation.AUTH_NORMAL: 0.70,
+            Observation.AUTH_UNUSUAL_LOGIN: 0.25,
+            Observation.AUTH_MFA_ANOMALY: 0.05,
+        },
+        SecurityState.LATERAL_MOVEMENT: {
+            Observation.AUTH_NORMAL: 0.10,
+            Observation.AUTH_UNUSUAL_LOGIN: 0.80,
+            Observation.AUTH_MFA_ANOMALY: 0.10,
+        },
+        SecurityState.DATA_EXFILTRATION: {
+            Observation.AUTH_NORMAL: 0.75,
+            Observation.AUTH_UNUSUAL_LOGIN: 0.20,
+            Observation.AUTH_MFA_ANOMALY: 0.05,
+        },
+    },
+
+    InvestigationAction.INSPECT_PROCESS: {
+        SecurityState.BENIGN: {
+            Observation.PROCESS_NORMAL: 0.92,
+            Observation.PROCESS_SUSPICIOUS_SCRIPT: 0.05,
+            Observation.PROCESS_ENCODED_POWERSHELL: 0.02,
+            Observation.PROCESS_KNOWN_MALWARE: 0.01,
+        },
+        SecurityState.CREDENTIAL_COMPROMISE: {
+            Observation.PROCESS_NORMAL: 0.70,
+            Observation.PROCESS_SUSPICIOUS_SCRIPT: 0.20,
+            Observation.PROCESS_ENCODED_POWERSHELL: 0.08,
+            Observation.PROCESS_KNOWN_MALWARE: 0.02,
+        },
+        SecurityState.MALWARE_COMPROMISE: {
+            Observation.PROCESS_NORMAL: 0.05,
+            Observation.PROCESS_SUSPICIOUS_SCRIPT: 0.15,
+            Observation.PROCESS_ENCODED_POWERSHELL: 0.30,
+            Observation.PROCESS_KNOWN_MALWARE: 0.50,
+        },
+        SecurityState.LATERAL_MOVEMENT: {
+            Observation.PROCESS_NORMAL: 0.10,
+            Observation.PROCESS_SUSPICIOUS_SCRIPT: 0.20,
+            Observation.PROCESS_ENCODED_POWERSHELL: 0.65,
+            Observation.PROCESS_KNOWN_MALWARE: 0.05,
+        },
+        SecurityState.DATA_EXFILTRATION: {
+            Observation.PROCESS_NORMAL: 0.40,
+            Observation.PROCESS_SUSPICIOUS_SCRIPT: 0.45,
+            Observation.PROCESS_ENCODED_POWERSHELL: 0.10,
+            Observation.PROCESS_KNOWN_MALWARE: 0.05,
+        },
+    },
+
+    InvestigationAction.INSPECT_NETWORK: {
+        SecurityState.BENIGN: {
+            Observation.NETWORK_NORMAL: 0.94,
+            Observation.NETWORK_RARE_DOMAIN: 0.04,
+            Observation.NETWORK_C2_PATTERN: 0.01,
+            Observation.NETWORK_HIGH_UPLOAD: 0.01,
+        },
+        SecurityState.CREDENTIAL_COMPROMISE: {
+            Observation.NETWORK_NORMAL: 0.75,
+            Observation.NETWORK_RARE_DOMAIN: 0.15,
+            Observation.NETWORK_C2_PATTERN: 0.05,
+            Observation.NETWORK_HIGH_UPLOAD: 0.05,
+        },
+        SecurityState.MALWARE_COMPROMISE: {
+            Observation.NETWORK_NORMAL: 0.10,
+            Observation.NETWORK_RARE_DOMAIN: 0.20,
+            Observation.NETWORK_C2_PATTERN: 0.65,
+            Observation.NETWORK_HIGH_UPLOAD: 0.05,
+        },
+        SecurityState.LATERAL_MOVEMENT: {
+            Observation.NETWORK_NORMAL: 0.30,
+            Observation.NETWORK_RARE_DOMAIN: 0.45,
+            Observation.NETWORK_C2_PATTERN: 0.20,
+            Observation.NETWORK_HIGH_UPLOAD: 0.05,
+        },
+        SecurityState.DATA_EXFILTRATION: {
+            Observation.NETWORK_NORMAL: 0.05,
+            Observation.NETWORK_RARE_DOMAIN: 0.10,
+            Observation.NETWORK_C2_PATTERN: 0.15,
+            Observation.NETWORK_HIGH_UPLOAD: 0.70,
+        },
+    },
+
+    InvestigationAction.INSPECT_VULNERABILITY: {
+        SecurityState.BENIGN: {
+            Observation.VULN_NONE: 0.85,
+            Observation.VULN_RELEVANT: 0.15,
+        },
+        SecurityState.CREDENTIAL_COMPROMISE: {
+            Observation.VULN_NONE: 0.70,
+            Observation.VULN_RELEVANT: 0.30,
+        },
+        SecurityState.MALWARE_COMPROMISE: {
+            Observation.VULN_NONE: 0.25,
+            Observation.VULN_RELEVANT: 0.75,
+        },
+        SecurityState.LATERAL_MOVEMENT: {
+            Observation.VULN_NONE: 0.30,
+            Observation.VULN_RELEVANT: 0.70,
+        },
+        SecurityState.DATA_EXFILTRATION: {
+            Observation.VULN_NONE: 0.60,
+            Observation.VULN_RELEVANT: 0.40,
+        },
+    },
+}
+
+
+def validate_observation_model(model: dict | None = None) -> None:
     tolerance = 1e-9
+    models_to_validate = [model] if model is not None else [OBSERVATION_MODEL, CALIBRATED_OBSERVATION_MODEL]
 
-    for action, state_table in OBSERVATION_MODEL.items():
-        for state, observation_table in state_table.items():
+    for m in models_to_validate:
+        for action, state_table in m.items():
+            for state, observation_table in state_table.items():
 
-            probabilities = list(observation_table.values())
+                probabilities = list(observation_table.values())
 
-            if any(p < 0.0 or p > 1.0 for p in probabilities):
-                raise ValueError(
-                    f"Invalid probability for {action=} {state=}"
-                )
+                if any(p < 0.0 or p > 1.0 for p in probabilities):
+                    raise ValueError(
+                        f"Invalid probability for {action=} {state=}"
+                    )
 
-            total = sum(probabilities)
+                total = sum(probabilities)
 
-            if abs(total - 1.0) > tolerance:
-                raise ValueError(
-                    f"Probabilities do not sum to 1 "
-                    f"for {action=} {state=}: {total}"
-                )
+                if abs(total - 1.0) > tolerance:
+                    raise ValueError(
+                        f"Probabilities do not sum to 1 "
+                        f"for {action=} {state=}: {total}"
+                    )
 
 
 class POMDPModel(ABC):

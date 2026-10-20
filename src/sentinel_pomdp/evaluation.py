@@ -1,9 +1,13 @@
 from collections import Counter
 from dataclasses import dataclass, field
+import time
+import math
 
 from sentinel_pomdp.decision import DecisionType
 from sentinel_pomdp.environment import SecurityInvestigationEnv
 from sentinel_pomdp.episode import EpisodeResult, run_episode
+from sentinel_pomdp.multistep import MultiStepPlanner
+from sentinel_pomdp.reward import DEFAULT_REWARD_CONFIG, RewardConfig
 from sentinel_pomdp.states import SecurityState
 
 
@@ -22,6 +26,11 @@ class EvaluationRecord:
     final_belief: dict[SecurityState, float]
 
     actions: list[str] = field(default_factory=list)
+    observations: list[str] = field(default_factory=list)
+
+    total_cost: float = 0.0
+
+    realized_utility: float = 0.0
 
 
 @dataclass
@@ -75,6 +84,10 @@ class EvaluationSummary:
     brier_score: float
     expected_calibration_error: float
 
+    average_cost: float = 0.0
+    average_realized_utility: float = 0.0
+    runtime_seconds: float = 0.0
+
 
 def episode_to_record(
     result: EpisodeResult,
@@ -85,12 +98,15 @@ def episode_to_record(
     )
 
     actions = []
+    observations = []
 
     for step in result.steps:
         if step.decision.action is not None:
             actions.append(
                 step.decision.action.value
             )
+        if step.observation is not None:
+            observations.append(step.observation.value)
 
     return EvaluationRecord(
         true_state=result.true_state,
@@ -101,12 +117,21 @@ def episode_to_record(
         final_confidence=final_confidence,
         final_belief=result.final_belief.copy(),
         actions=actions,
+        observations=observations,
+        total_cost=result.total_cost,
+        realized_utility=result.realized_utility,
     )
 
 
 def run_balanced_evaluation(
     episodes_per_state: int = 200,
     base_seed: int = 1000,
+    *,
+    planner: MultiStepPlanner | None = None,
+    max_steps: int = 10,
+    initial_belief_state: dict | None = None,
+    observation_model: dict | None = None,
+    reward_config: RewardConfig = DEFAULT_REWARD_CONFIG,
 ) -> list[EvaluationRecord]:
 
     records: list[EvaluationRecord] = []
@@ -120,9 +145,18 @@ def run_balanced_evaluation(
             env = SecurityInvestigationEnv(
                 true_state=state,
                 seed=seed,
+                observation_model=observation_model,
+                initial_belief_state=initial_belief_state,
             )
 
-            result = run_episode(env)
+            result = run_episode(
+                env,
+                max_steps=max_steps,
+                planner=planner,
+                reward_config=reward_config,
+                initial_belief_state=initial_belief_state,
+                observation_model=observation_model,
+            )
 
             records.append(
                 episode_to_record(result)
@@ -170,8 +204,17 @@ def multiclass_brier_score(
     return total_score / len(records)
 
 
+def multiclass_log_loss(records: list[EvaluationRecord], epsilon: float = 1e-15) -> float:
+    """Mean negative log probability assigned to the simulated true state."""
+    if not records:
+        raise ValueError("Cannot calculate log loss for empty records.")
+    return -sum(math.log(max(epsilon, record.final_belief[record.true_state]))
+                for record in records) / len(records)
+
+
 def summarize(
     records: list[EvaluationRecord],
+    runtime_seconds: float = 0.0,
 ) -> EvaluationSummary:
 
     if not records:
@@ -227,6 +270,16 @@ def summarize(
         / total
     )
 
+    average_cost = (
+        sum(record.total_cost for record in records)
+        / total
+    )
+
+    average_realized_utility = (
+        sum(record.realized_utility for record in records)
+        / total
+    )
+
     return EvaluationSummary(
         total_episodes=total,
         answered=answered,
@@ -245,6 +298,9 @@ def summarize(
         expected_calibration_error=(
             expected_calibration_error(records)
         ),
+        average_cost=average_cost,
+        average_realized_utility=average_realized_utility,
+        runtime_seconds=runtime_seconds,
     )
 
 

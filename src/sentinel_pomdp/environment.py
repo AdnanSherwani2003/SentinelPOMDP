@@ -19,8 +19,14 @@ class SecurityInvestigationEnv:
         self,
         true_state: SecurityState | None = None,
         seed: int | None = None,
+        observation_model: dict | None = None,
+        initial_belief_state: dict | None = None,
     ) -> None:
         self.rng = random.Random(seed)
+        self.observation_model = (
+            OBSERVATION_MODEL if observation_model is None else observation_model
+        )
+        self.initial_belief_state = initial_belief_state
 
         if true_state is None:
             self.true_state = self._sample_initial_state()
@@ -28,7 +34,7 @@ class SecurityInvestigationEnv:
             self.true_state = true_state
 
     def _sample_initial_state(self) -> SecurityState:
-        belief = initial_belief()
+        belief = self.initial_belief_state or initial_belief()
 
         states = list(belief.keys())
         probabilities = list(belief.values())
@@ -43,7 +49,7 @@ class SecurityInvestigationEnv:
         self,
         action: InvestigationAction,
     ) -> Observation:
-        distribution = OBSERVATION_MODEL[
+        distribution = self.observation_model[
             action
         ][self.true_state]
 
