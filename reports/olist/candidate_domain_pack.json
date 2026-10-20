@@ -1,0 +1,20 @@
+{
+  "dataset_version": "olist-public-2018",
+  "model_version": "olist-margin-v1",
+  "observational_likelihoods": {
+    "shipment_delayed": {
+      "long": 0.7047838321821438,
+      "medium": 0.174469173701714,
+      "missing": 0.0005116398055768739,
+      "short": 0.12023535431056537
+    },
+    "shipment_on_time": {
+      "long": 0.8243948654121231,
+      "medium": 0.16457060058330703,
+      "missing": 1.8576656573349928e-05,
+      "short": 0.011015957347996508
+    }
+  },
+  "reason": "Schedule margin is a predictive feature, but does not supply independent evidence of a delivered outcome. No operational domain pack was created or activated.",
+  "status": "NOT_ELIGIBLE_FOR_APPROVAL"
+}

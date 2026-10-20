@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="380" viewBox="0 0 620 380">
+<rect width="620" height="380" fill="white"/><line x1="50" y1="330" x2="550" y2="50" stroke="#aaa" stroke-dasharray="5 5"/>
+<line x1="50" y1="330" x2="550" y2="330" stroke="#222"/><line x1="50" y1="330" x2="50" y2="50" stroke="#222"/>
+<polyline points="76.4,320.2" fill="none" stroke="#087f5b" stroke-width="3"/><g fill="#087f5b"><circle cx="76.4" cy="320.2" r="4"/></g>
+<text x="225" y="370" font-family="sans-serif" font-size="14">Predicted probability of delay</text>
+<text x="16" y="215" transform="rotate(-90 16 215)" font-family="sans-serif" font-size="14">Observed delay frequency</text>
+<text x="50" y="28" font-family="sans-serif" font-size="18">Olist purchase-time reliability</text></svg>

@@ -1,147 +1,142 @@
-# Sentinel POMDP (`sentinel-pomdp`)
+# SentinelPOMDP
 
-A modular Python library for Partially Observable Markov Decision Process (POMDP) modeling, state estimation, and exact Bayesian belief updating tailored for sentinel surveillance and target tracking domains.
+Evidence-driven investigation with Bayesian POMDP planning, source provenance,
+durable workflows, and justified abstention.
 
----
+SentinelPOMDP is a research and portfolio system. It chooses registered evidence
+actions, updates beliefs when an approved probability model exists, verifies the
+supporting sources, and returns `ANSWER` or `ABSTAIN`. Historical delivery lookup
+and invoice reconciliation use deterministic factual checks.
 
-## 📁 Repository Architecture
+## What it demonstrates
 
-```
-sentinel-pomdp/
-│
-├── src/
-│   └── sentinel_pomdp/
-│       ├── __init__.py          # Package exports and public API
-│       ├── states.py            # State abstractions & GridState dataclass
-│       ├── actions.py           # Action enums & movement deltas
-│       ├── observations.py      # Sensory observations & detection models
-│       ├── model.py             # POMDPModel base & SentinelPOMDP environment
-│       └── belief.py            # BeliefDistribution & Bayesian update engine
-│
-├── tests/
-│   └── test_belief.py           # Pytest suite for belief updates & math checks
-│
-├── scripts/
-│   └── demo_belief_update.py    # Interactive demo with ASCII heatmap visualization
-│
-├── README.md                    # Project documentation
-└── requirements.txt             # Python dependencies
-```
+- Exact Bayesian updates, information gain, expected utility and finite-horizon
+  Bellman planning.
+- Neo4j evidence provenance, tenant isolation, source withdrawal and human review.
+- LangGraph orchestration and constrained, optional LLM interpretation/explanation.
+- FastAPI and an authenticated browser console.
+- Versioned domain packs: real historical Olist logistics and synthetic procurement.
+- PostgreSQL jobs, leases, fencing, idempotency, cooperative cancellation and checkpoints.
 
----
+The mathematical engine controls actions and decisions. An LLM cannot grant
+permissions, change probabilities, activate a model, or override evidence gates.
+The default provider is a deterministic fake; no paid API key is needed.
 
-## 🎯 POMDP Formulation Overview
+## Architecture
 
-In a Partially Observable Markov Decision Process (POMDP), the agent cannot directly observe the true world state $s \in S$. Instead, it maintains a **belief distribution** $b(s) = P(s_t = s \mid h_t)$ over all possible states given history $h_t$.
-
-### Exact Bayesian Belief Update Formula
-
-When the sentinel executes action $a$ and receives observation $o$, the updated belief distribution $b'(s')$ for state $s'$ is calculated via Bayes' filter:
-
-$$b'(s') = \frac{O(o \mid s', a) \sum_{s \in S} T(s' \mid s, a) \, b(s)}{\sum_{s'' \in S} O(o \mid s'', a) \sum_{s \in S} T(s'' \mid s, a) \, b(s)}$$
-
-Where:
-- $T(s' \mid s, a) = P(s_{t+1} = s' \mid s_t = s, a_t = a)$ is the **state transition model**.
-- $O(o \mid s', a) = P(o_{t+1} = o \mid s_{t+1} = s', a_t = a)$ is the **observation model**.
-- The denominator is the normalization factor $P(o \mid b, a)$.
-
----
-
-## ⚡ Quickstart & Installation
-
-### Requirements
-- Python 3.9+
-- NumPy >= 1.20.0
-- pytest >= 7.0.0
-
-### Installation
-
-```bash
-git clone https://github.com/your-username/sentinel-pomdp.git
-cd sentinel-pomdp
-
-# Install dependencies
-pip install -r requirements.txt
+```mermaid
+flowchart TD
+  U[Browser or HTTP client] --> A[FastAPI authentication and tenant scope]
+  A --> D[Approved domain or scenario registry]
+  A --> J[PostgreSQL durable jobs]
+  D --> L[LangGraph workflow]
+  J --> W[Background workers]
+  W --> L
+  L --> P[Deterministic planner and Bayesian updates]
+  L --> T[Registered evidence tools]
+  T --> N[Neo4j and reviewed source evidence]
+  N --> G[Evidence and provenance gate]
+  P --> G
+  G --> R[ANSWER or ABSTAIN with trace]
 ```
 
----
+[Verified architecture and seven diagrams](docs/architecture.md) ·
+[Security boundaries](docs/security_and_trust_boundaries.md) ·
+[Release validation](docs/release_validation.md)
 
-## 🚀 Running the Demo
+## Quick start
 
-To run the interactive belief update demo with target location heatmap visualization:
+Tested target: Windows PowerShell, Python 3.13, uv and Docker Desktop.
+Dependencies are locked in `uv.lock`. The API is restricted to one process;
+background workers use PostgreSQL coordination.
 
-```bash
-python scripts/demo_belief_update.py
+```powershell
+git clone https://github.com/AdnanSherwani2003/SentinelPOMDP.git
+Set-Location SentinelPOMDP
+uv sync --frozen --group dev
+$env:RUN_LIVE_GROQ_TESTS = '0'
+$env:RUN_LIVE_LLM_TESTS = '0'
+uv run pytest -q -rs
+# Docker Desktop must be running. Creates a separate local demo project.
+powershell -NoProfile -File scripts/start_demo.ps1
 ```
 
-### Sample Output Visualization
+Open `http://127.0.0.1:18082`. The setup creates a private local credential file
+under ignored `data/demo/`; use its API key in the console. It initializes
+explicitly synthetic evidence and an authorized demo reviewer. No Olist download,
+private organizational documents or external inference is needed.
 
-```text
-=============================================
- Target Location Belief Heatmap (Sentinel at (1, 1))
-=============================================
-     x=0    x=1    x=2    x=3  
-   +------+------+------+------+
-y=3 | 0.2%| 1.4%| 84.5%| 1.1%|
-   +------+------+------+------+
-y=2 | 0.1%| 0.8%| 8.2%| 0.9%|
-   +------+------+------+------+
-y=1 | 0.0%| S:0.3%| 1.2%| 0.2%|
-   +------+------+------+------+
-y=0 | 0.0%| 0.1%| 0.8%| 0.2%|
-   +------+------+------+------+
+The current working tree contains the release candidate. The remote repository
+will not contain these changes until the owner reviews and authorizes a commit
+and push. Local staging inventories and operational evidence are intentionally
+private; the [public validation summary](docs/release_validation.md) describes
+what was checked without publishing local records.
+
+For detailed setup, credential handling, shutdown and optional read-only Olist
+access, see [quickstart](docs/quickstart.md) and [demo walkthrough](docs/demo_walkthrough.md).
+
+## Supported examples
+
+| Question | Fixture | Expected behavior |
+|---|---|---|
+| Was Supplier A's shipment late? | Synthetic probabilistic scenario | ANSWER with evidence and posterior |
+| Did Supplier A cause the entire production delay? | Synthetic scenario lacking causal support | ABSTAIN |
+| Does INV-1001 match PO-2001? | Synthetic procurement | Exact decimal reconciliation |
+| Was Olist order `<imported-order-id>` late? | Optional local real archive and reviewed graph | Historical source-row lookup |
+| What was its risk at purchase time? | Optional Olist snapshot | INSUFFICIENT_MODEL / ABSTAIN while model is unapproved |
+
+## Evidence and research status
+
+| Capability | Evidence level |
+|---|---|
+| Bayesian updates and POMDP decisions | Mathematically implemented; deterministic reference tests |
+| Investigation policies | Synthetic simulator experiments |
+| Provenance and human review | Synthetic integration tests and reviewed Olist records |
+| Procurement matching | Synthetic engineering acceptance only |
+| Olist delivery lookup | Real historical records; not a forecast |
+| Calibration framework | Count-based estimation, smoothing and synthetic holdout tests |
+| Olist risk candidates | Historical chronological holdout; unapproved and inactive |
+| Real-world autonomous POMDP advantage | NOT EVALUABLE from the Olist archive |
+| Production deployment | Not validated or certified |
+
+In the preserved 1,000-episode synthetic benchmark, immediate abstention had
+average utility -0.250, compared with -0.300 for horizon-2 POMDP and -0.331 for
+one-step expected utility. These results depend on the simulator and reward model.
+
+Olist purchase-time logistic Brier score was 0.033894 versus prior-only 0.033944:
+a very small improvement. Carrier-handoff Brier was 0.031949, using a later
+information snapshot. Neither establishes autonomous investigation value.
+[Evaluation assumptions, uncertainty and limitations](docs/evaluation_summary.md)
+
+## Verification and development
+
+```powershell
+uv run python scripts/check_secrets.py
+uv run python scripts/audit_release.py
+uv run python scripts/demo_api.py
+powershell -NoProfile -File scripts/verify_clean_install.ps1
+powershell -NoProfile -File scripts/verify_multidomain_live.ps1
 ```
 
----
+Paid-provider tests are explicitly opt-in and remain disabled in routine checks.
+Remote CI configuration is provided; local validation does not prove remote CI ran.
 
-## 🧪 Running Unit Tests
+[Developer guide](docs/developer_guide.md) · [API reference](docs/api_reference.md) ·
+[Domain authoring](docs/adding_a_domain.md) · [Deployment runbook](docs/deployment_runbook.md) ·
+[Backup and restore](docs/backup_restore.md) · [Case study and resume bullets](docs/portfolio_case_study.md)
 
-Run the full pytest suite:
+## Scope and license
 
-```bash
-pytest tests/
-```
+The validated deployment is a local controlled demonstration with one API process.
+Authentication and throttling remain process-local. Community Neo4j backup needs
+downtime. Production HA, external alert dispatch, independent security certification
+and real company procurement accuracy are unverified.
+[Limitations and future work](docs/limitations_and_future_work.md)
 
----
-
-## 💻 Python Usage Example
-
-```python
-from sentinel_pomdp import (
-    SentinelPOMDP,
-    SentinelAction,
-    SentinelObservation,
-    BeliefDistribution,
-)
-
-# 1. Initialize 5x5 Sentinel POMDP environment
-model = SentinelPOMDP(grid_width=5, grid_height=5)
-
-# 2. Set up initial uniform belief distribution
-states = model.get_states()
-belief = BeliefDistribution.uniform(states)
-print(f"Initial Entropy: {belief.entropy():.3f} bits")
-
-# 3. Sentinel takes a SCAN action and gets observation
-action = SentinelAction.SCAN
-observation = SentinelObservation(
-    target_detected=True,
-    observed_pos=(2, 3),
-    signal_quality=0.9
-)
-
-# 4. Perform Bayesian belief update
-updated_belief = belief.update(model, action, observation)
-
-# 5. Retrieve most likely target state
-most_likely, probability = updated_belief.most_likely_state()
-print(f"Most likely state: {most_likely}")
-print(f"Probability: {probability * 100:.2f}%")
-print(f"New Entropy: {updated_belief.entropy():.3f} bits")
-```
-
----
-
-## 📄 License
-
-MIT License. Free for research, education, and commercial use.
+Original project material: Copyright 2026 AdnanSherwani2003, licensed under
+[Apache-2.0](LICENSE). See [NOTICE](NOTICE). The identifier is the owner's confirmed
+GitHub username; this notice does not claim third-party ownership.
+Olist data is separately licensed under CC BY-NC-SA 4.0 and is not redistributed
+here; the project license does not relicense datasets or dependencies.
+[Data sources and attribution](docs/data_sources_and_attribution.md)
+Keep raw archives, source documents, credentials, database files and backups out of Git.

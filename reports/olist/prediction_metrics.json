@@ -1,0 +1,83 @@
+{
+  "dataset_version": "olist-public-2018",
+  "likelihood_by_outcome": {
+    "shipment_delayed": {
+      "long": 0.7047838321821438,
+      "medium": 0.174469173701714,
+      "missing": 0.0005116398055768739,
+      "short": 0.12023535431056537
+    },
+    "shipment_on_time": {
+      "long": 0.8243948654121231,
+      "medium": 0.16457060058330703,
+      "missing": 1.8576656573349928e-05,
+      "short": 0.011015957347996508
+    }
+  },
+  "limitations": [
+    "Olist outcome is an operational proxy, not independently audited ground truth.",
+    "The margin bucket is an observed feature channel, not a counterfactual tool action.",
+    "No multi-step advantage is claimed because the dataset lacks counterfactual action outcomes."
+  ],
+  "method": "purchase/carrier margin categorical empirical baseline; Laplace smoothing",
+  "metrics": {
+    "abstention_rate": 0.13011171732917637,
+    "brier_score": 0.04215867178183882,
+    "cases": 19245,
+    "coverage": 0.8698882826708236,
+    "log_loss": 0.17022285876826793,
+    "selective_accuracy": 0.9859028731855922,
+    "wrong_answer_rate": 0.012262925435177967
+  },
+  "model_version": "olist-margin-v1",
+  "outcome_hidden_during_prediction": true,
+  "pomdp_with_evidence_gate": {
+    "coverage": 0.0,
+    "initial_decision": "ABSTAIN",
+    "reason": "Schedule margin is not independent evidence of the eventual delivery outcome."
+  },
+  "posterior_by_margin_bucket": {
+    "long": 0.05841244176454535,
+    "medium": 0.07143373326792846,
+    "missing": 0.6665084205978525,
+    "short": 0.441969257828294
+  },
+  "prior_late": 0.06765510790868466,
+  "prior_only_metrics": {
+    "abstention_rate": 0.0,
+    "brier_score": 0.034770590345841026,
+    "cases": 19245,
+    "coverage": 1.0,
+    "log_loss": 0.16165258718965025,
+    "selective_accuracy": 0.9650818394388153,
+    "wrong_answer_rate": 0.03491816056118472
+  },
+  "runtime_seconds": 24.90190990001429,
+  "seed": 16,
+  "selected_threshold": 0.6,
+  "snapshot": "CARRIER_HANDOFF",
+  "split": {
+    "test": 19245,
+    "train": 57732,
+    "train_end": "2018-03-02T17:23:15",
+    "validation": 19244,
+    "validation_end": "2018-05-25T16:19:08"
+  },
+  "training_counts": {
+    "long": {
+      "shipment_delayed": 2754,
+      "shipment_on_time": 44377
+    },
+    "medium": {
+      "shipment_delayed": 681,
+      "shipment_on_time": 8858
+    },
+    "missing": {
+      "shipment_delayed": 1
+    },
+    "short": {
+      "shipment_delayed": 469,
+      "shipment_on_time": 592
+    }
+  }
+}

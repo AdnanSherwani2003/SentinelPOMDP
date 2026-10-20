@@ -1,0 +1,30 @@
+{
+  "immediate_abstention": {
+    "coverage": 0,
+    "wrong_answer_rate": 0
+  },
+  "multi_step": "NOT_ESTIMABLE_FROM_HISTORICAL DATA",
+  "one_step_pomdp_with_evidence_gate": {
+    "coverage": 0.0,
+    "initial_decision": "ABSTAIN",
+    "reason": "Schedule margin is not independent evidence of the eventual delivery outcome."
+  },
+  "prior_only": {
+    "abstention_rate": 0.0,
+    "brier_score": 0.034770590345841026,
+    "cases": 19245,
+    "coverage": 1.0,
+    "log_loss": 0.16165258718965025,
+    "selective_accuracy": 0.9650818394388153,
+    "wrong_answer_rate": 0.03491816056118472
+  },
+  "schedule_margin_statistical_baseline": {
+    "abstention_rate": 0.13011171732917637,
+    "brier_score": 0.04215867178183882,
+    "cases": 19245,
+    "coverage": 0.8698882826708236,
+    "log_loss": 0.17022285876826793,
+    "selective_accuracy": 0.9859028731855922,
+    "wrong_answer_rate": 0.012262925435177967
+  }
+}

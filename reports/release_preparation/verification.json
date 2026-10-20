@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-21",
+  "test_execution_date": "2026-10-20",
+  "scope": "local preparation only; no Git index/history/publication action",
+  "copyright_holder": "AdnanSherwani2003",
+  "copyright_scope": "original SentinelPOMDP material only; excludes third-party code and Olist data",
+  "code_license": "Apache-2.0",
+  "raw_olist_redistributed": false,
+  "mathematical_parameters_changed": false,
+  "paid_provider_calls": false,
+  "offline": { "passed": 326, "failed": 0, "skipped": 25, "seconds": 175.87 },
+  "exact_public_source_export": { "passed": 324, "failed": 0, "errors": 0, "skipped": 27, "junit_suite_seconds": 106.988, "source_origin_asserted": true, "uses_existing_locked_dependency_environment": true },
+  "isolated_packaging_with_disposable_postgres": { "passed": 6, "failed": 0, "skipped": 0, "seconds": 108.62 },
+  "isolated_packaging_without_postgres_opt_in": { "passed": 4, "failed": 0, "skipped": 2, "seconds": 52.04 },
+  "artifacts": {
+    "direct_wheel": "PASS",
+    "sdist": "PASS",
+    "wheel_rebuilt_from_sdist": "PASS",
+    "sql_migrations_byte_equal": true,
+    "web_assets_byte_equal": true,
+    "apache_license_byte_equal": true,
+    "project_notice_byte_equal": true,
+    "isolated_installs_without_editable_fallback": true,
+    "sqlite_initialization_reopen_idempotency_tenant_denial": "PASS",
+    "postgres_initialization_reopen_idempotency_tenant_denial": "PASS",
+    "fake_provider_api_and_assets": "PASS"
+  },
+  "diagrams": {
+    "mermaid": "12.2.0",
+    "jsdom": "26.1.0",
+    "node_minimum": "22.12.0",
+    "blocks_parsed": 8,
+    "npm_reported_vulnerabilities": 0,
+    "clean_export_npm_ci": "PASS; independent node_modules, lifecycle scripts disabled",
+    "node_tested": "24.14.0",
+    "remote_render": "NOT RUN"
+  },
+  "copyright_notice_completion": {
+    "date": "2026-10-21",
+    "identifier": "AdnanSherwani2003",
+    "official_license_sha256_unchanged": true,
+    "notice_in_wheel_sdist_and_sdist_rebuilt_wheel": true,
+    "packaging_tests": { "passed": 5, "failed": 0, "skipped": 2, "seconds": 153.82 },
+    "fresh_environment_full_suite": { "passed": 325, "failed": 0, "errors": 0, "skipped": 27, "pytest_seconds": 187.85, "locked_packages_installed": 70 },
+    "postgres_recheck": "NOT RUN: Docker Linux engine unavailable; no new database created",
+    "historical_live_postgres_result": "6 packaging cases passed before the notice-only update; retained above, not rerun success"
+  },
+  "limitations": [
+    "Source datasets, original-row operational evidence, local inventories and raw logs remain private.",
+    "Remote CI and production deployment have not been run.",
+    "Copyright-holder identifier is the explicitly confirmed GitHub username, not an invented legal name.",
+    "Historical bytecode in Git history is not removed by a proposed future index cleanup.",
+    "Dependency advisory results are point-in-time, not a security certification."
+  ]
+}

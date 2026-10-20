@@ -1,0 +1,11 @@
+Illustrative synthetic benchmark; not enterprise evidence or verified sources.
+Existing policy is an immediate information-gain decision rule.
+Lookahead policies also optimize future terminal utility; gamma=0.95.
+States: balanced, episodes/state=200, base_seed=1000
+policy             coverage  selective      wrong    abstain  actions/ep     Brier
+legacy               20.90%     78.47%      4.50%     79.10%        3.58    0.5573
+  correct by state: benign=164/200, credential_compromise=0/200, malware_compromise=0/200, lateral_movement=0/200, data_exfiltration=0/200
+horizon_1            17.30%     89.02%      1.90%     82.70%        3.05    0.5471
+  correct by state: benign=154/200, credential_compromise=0/200, malware_compromise=0/200, lateral_movement=0/200, data_exfiltration=0/200
+horizon_2            17.30%     89.02%      1.90%     82.70%        3.02    0.5420
+  correct by state: benign=154/200, credential_compromise=0/200, malware_compromise=0/200, lateral_movement=0/200, data_exfiltration=0/200

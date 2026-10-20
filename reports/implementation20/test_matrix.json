@@ -1,0 +1,355 @@
+{
+  "category_counts_overlap": true,
+  "runs": {
+    "working_tree_offline": {
+      "passed": 322,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 23,
+      "total": 345,
+      "elapsed_seconds": 67.4,
+      "skips": [
+        {
+          "test": "tests.test_api_live.test_live_browser_api_path_preserves_math_and_tenant_isolation",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_enterprise_ingestion_live.test_live_neo4j_company_document_to_authoritative_decision",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_connection_and_constraints",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_dataset_ingestion_and_idempotence",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_entity_retrieval",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_tenant_isolation",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_provenance_scenarios",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_multi_hop_traversal",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_multi_hop_backend_shape_parity",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_investigation_live.test_live_and_memory_tool_contract_equivalence",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_graph_investigation_live.test_live_graph_result_drives_bayes_and_answer_gate",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_intelligence_adapter.test_real_provider_smoke_is_explicit_opt_in",
+          "reason": "set RUN_LIVE_LLM_TESTS=1 and OPENAI_API_KEY for paid provider smoke test"
+        },
+        {
+          "test": "tests.test_intelligence_adapter.test_real_groq_end_to_end_when_configured",
+          "reason": "set RUN_LIVE_GROQ_TESTS=1 and GROQ_API_KEY for real Groq verification"
+        },
+        {
+          "test": "tests.test_langgraph_live.test_live_and_memory_langgraph_logical_equivalence",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_langgraph_live.test_optional_temporal_properties_remain_none_live",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_multidomain_live.test_live_procurement_provenance_and_withdrawal",
+          "reason": "requires explicitly disposable I19 Neo4j"
+        },
+        {
+          "test": "tests.test_olist_live.test_live_olist_graph_provenance_and_tenant_isolation",
+          "reason": "live Neo4j or local Olist archive is unavailable"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_restart_durability_and_tenant_scope",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_skip_locked_claim_has_one_owner",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_langgraph_checkpoint_survives_process_resource_restart",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_concurrent_idempotent_submission_creates_one_job",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_pilot_live.test_live_calibrated_pack_drives_tenant_scoped_graph_investigation",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_security_live.test_live_protected_service_enforces_tenant_and_preserves_decision",
+          "reason": "live Neo4j is unavailable"
+        }
+      ],
+      "categories": {
+        "mathematics": {
+          "passed": 54,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 54
+        },
+        "security": {
+          "passed": 40,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 1,
+          "total": 41
+        },
+        "reliability": {
+          "passed": 28,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 4,
+          "total": 32
+        },
+        "live_postgres": {
+          "passed": 0,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 4,
+          "total": 4
+        },
+        "live_neo4j": {
+          "passed": 0,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 17,
+          "total": 17
+        }
+      }
+    },
+    "isolated_install_without_archive": {
+      "passed": 320,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 25,
+      "total": 345,
+      "elapsed_seconds": 74.444,
+      "skips": [
+        {
+          "test": "tests.test_api_live.test_live_browser_api_path_preserves_math_and_tenant_isolation",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_enterprise_ingestion_live.test_live_neo4j_company_document_to_authoritative_decision",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_connection_and_constraints",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_dataset_ingestion_and_idempotence",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_entity_retrieval",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_tenant_isolation",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_provenance_scenarios",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_live_multi_hop_traversal",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_integration.TestNeo4jLiveIntegration.test_multi_hop_backend_shape_parity",
+          "reason": "Live Neo4j instance not reachable at configured URI. Start Neo4j via 'docker compose -f infra/compose.yaml up -d' to execute live integration tests."
+        },
+        {
+          "test": "tests.test_graph_investigation_live.test_live_and_memory_tool_contract_equivalence",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_graph_investigation_live.test_live_graph_result_drives_bayes_and_answer_gate",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_intelligence_adapter.test_real_provider_smoke_is_explicit_opt_in",
+          "reason": "set RUN_LIVE_LLM_TESTS=1 and OPENAI_API_KEY for paid provider smoke test"
+        },
+        {
+          "test": "tests.test_intelligence_adapter.test_real_groq_end_to_end_when_configured",
+          "reason": "set RUN_LIVE_GROQ_TESTS=1 and GROQ_API_KEY for real Groq verification"
+        },
+        {
+          "test": "tests.test_langgraph_live.test_live_and_memory_langgraph_logical_equivalence",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_langgraph_live.test_optional_temporal_properties_remain_none_live",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_multidomain_live.test_live_procurement_provenance_and_withdrawal",
+          "reason": "requires explicitly disposable I19 Neo4j"
+        },
+        {
+          "test": "tests.test_olist_integration.test_actual_archive_schema_and_temporal_examples",
+          "reason": "local Olist archive unavailable"
+        },
+        {
+          "test": "tests.test_olist_live.test_live_olist_graph_provenance_and_tenant_isolation",
+          "reason": "live Neo4j or local Olist archive is unavailable"
+        },
+        {
+          "test": "tests.test_olist_predictive.test_actual_archive_temporal_counts_and_future_exclusion",
+          "reason": "local Olist archive unavailable"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_restart_durability_and_tenant_scope",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_skip_locked_claim_has_one_owner",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_langgraph_checkpoint_survives_process_resource_restart",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_operations_postgres_live.test_postgres_concurrent_idempotent_submission_creates_one_job",
+          "reason": "SENTINEL_TEST_OPERATIONS_DATABASE_URL is not configured"
+        },
+        {
+          "test": "tests.test_pilot_live.test_live_calibrated_pack_drives_tenant_scoped_graph_investigation",
+          "reason": "live Neo4j is unavailable"
+        },
+        {
+          "test": "tests.test_security_live.test_live_protected_service_enforces_tenant_and_preserves_decision",
+          "reason": "live Neo4j is unavailable"
+        }
+      ],
+      "categories": {
+        "mathematics": {
+          "passed": 54,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 54
+        },
+        "security": {
+          "passed": 40,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 1,
+          "total": 41
+        },
+        "reliability": {
+          "passed": 28,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 4,
+          "total": 32
+        },
+        "live_postgres": {
+          "passed": 0,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 4,
+          "total": 4
+        },
+        "live_neo4j": {
+          "passed": 0,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 17,
+          "total": 17
+        }
+      }
+    },
+    "disposable_live_inclusive": {
+      "passed": 343,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 2,
+      "total": 345,
+      "elapsed_seconds": 63.223,
+      "skips": [
+        {
+          "test": "tests.test_intelligence_adapter.test_real_provider_smoke_is_explicit_opt_in",
+          "reason": "set RUN_LIVE_LLM_TESTS=1 and OPENAI_API_KEY for paid provider smoke test"
+        },
+        {
+          "test": "tests.test_intelligence_adapter.test_real_groq_end_to_end_when_configured",
+          "reason": "set RUN_LIVE_GROQ_TESTS=1 and GROQ_API_KEY for real Groq verification"
+        }
+      ],
+      "categories": {
+        "mathematics": {
+          "passed": 54,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 54
+        },
+        "security": {
+          "passed": 41,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 41
+        },
+        "reliability": {
+          "passed": 32,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 32
+        },
+        "live_postgres": {
+          "passed": 4,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 4
+        },
+        "live_neo4j": {
+          "passed": 17,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "total": 17
+        }
+      }
+    }
+  },
+  "browser": {
+    "automation": "actual localhost browser sessions; not pytest cases",
+    "authentication": "PASS",
+    "synthetic_pomdp_and_evidence_details": "PASS",
+    "procurement_and_domain_switching": "PASS",
+    "domain_validation_errors": "PASS",
+    "operations_health_and_completed_job": "PASS",
+    "olist_readonly": "PASS"
+  }
+}

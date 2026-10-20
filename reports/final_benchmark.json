@@ -1,0 +1,573 @@
+{
+  "api_performance": {
+    "bounded_concurrency": 4,
+    "concurrent_error_count": 0,
+    "concurrent_latency_ms": {
+      "median": 634.3495000037365,
+      "p95": 670.4838000005111
+    },
+    "concurrent_samples": 8,
+    "concurrent_successes": 8,
+    "latency_ms": {
+      "max": 210.75489997747354,
+      "median": 161.55290001188405,
+      "min": 95.2292000001762,
+      "p95": 202.21420002053492
+    },
+    "limitations": [
+      "Local TestClient measurements are not network or production load tests.",
+      "tracemalloc measures traced Python allocations, not total process RSS.",
+      "Process-local state and rate limits are not coordinated across workers."
+    ],
+    "mode": "in_memory_fake_provider",
+    "python_tracemalloc_peak_bytes": 2233332,
+    "sequential_samples": 12,
+    "sequential_successes": 12,
+    "throughput_requests_per_second": 6.068984477523277,
+    "warmup_requests": 1
+  },
+  "configuration": {
+    "backend": "memory",
+    "episodes_per_state": 200,
+    "provider": "deterministic-fake",
+    "secrets_included": false,
+    "seed": 13000
+  },
+  "evidence_and_language_boundary": [
+    {
+      "case": "shipment_lateness",
+      "claim_type": "SHIPMENT_TIMELINESS",
+      "contradicting_evidence_ids": [],
+      "decision": "ANSWER",
+      "document_ids": [
+        "doc_telematics_002",
+        "doc_wh_log_001"
+      ],
+      "fact_ids": [
+        "fact_sup_a_caused_delay"
+      ],
+      "fallback": false,
+      "grounding_valid": true,
+      "latency_ms": 51.28249997505918,
+      "provenance_status": "VERIFIED_SUPPORTED",
+      "question": "Was Supplier A's shipment late?",
+      "scenario_id": "supplier_a_shipment_delay",
+      "selected_hypothesis": "shipment_delayed",
+      "status": "COMPLETED",
+      "supporting_evidence_ids": [
+        "ev_telematics_truck_customs",
+        "ev_wh_log_apx101_late"
+      ]
+    },
+    {
+      "case": "causal_attribution",
+      "claim_type": "CAUSAL_ATTRIBUTION",
+      "contradicting_evidence_ids": [],
+      "decision": "ABSTAIN",
+      "document_ids": [
+        "doc_wh_log_001"
+      ],
+      "fact_ids": [
+        "fact_incident_attributed_sup_a"
+      ],
+      "fallback": false,
+      "grounding_valid": true,
+      "latency_ms": 41.816300014033914,
+      "provenance_status": "IRRELEVANT_SUPPORT",
+      "question": "Did Supplier A cause the entire production delay?",
+      "scenario_id": "supplier_delay_causal_attribution",
+      "selected_hypothesis": null,
+      "status": "COMPLETED",
+      "supporting_evidence_ids": [
+        "ev_wh_log_apx101_late"
+      ]
+    },
+    {
+      "case": "conflicting_delivery",
+      "claim_type": "DELIVERY_TIMELINESS",
+      "contradicting_evidence_ids": [
+        "ev_dock_b_late_damaged"
+      ],
+      "decision": "ABSTAIN",
+      "document_ids": [
+        "doc_dock_inspection_004",
+        "doc_sup_b_note_003"
+      ],
+      "fact_ids": [
+        "fact_sup_b_delivered_ontime"
+      ],
+      "fallback": false,
+      "grounding_valid": true,
+      "latency_ms": 31.75830002874136,
+      "provenance_status": "CONFLICTED",
+      "question": "Did Supplier B deliver on time?",
+      "scenario_id": "supplier_b_conflicting_delivery",
+      "selected_hypothesis": null,
+      "status": "COMPLETED",
+      "supporting_evidence_ids": [
+        "ev_sup_b_claimed_ontime"
+      ]
+    },
+    {
+      "case": "missing_certification",
+      "claim_type": "CERTIFICATION_STATUS",
+      "contradicting_evidence_ids": [],
+      "decision": "ABSTAIN",
+      "document_ids": [],
+      "fact_ids": [
+        "fact_comp_a_qa_certified"
+      ],
+      "fallback": false,
+      "grounding_valid": true,
+      "latency_ms": 31.29869999247603,
+      "provenance_status": "INSUFFICIENT",
+      "question": "Is Component A certified?",
+      "scenario_id": "component_certification_missing",
+      "selected_hypothesis": null,
+      "status": "COMPLETED",
+      "supporting_evidence_ids": []
+    },
+    {
+      "case": "multi_investigation",
+      "claim_type": "DELAY_SIGNAL_SCREENING",
+      "contradicting_evidence_ids": [],
+      "decision": "ABSTAIN",
+      "document_ids": [
+        "doc_robot_cal_005",
+        "doc_wh_log_001"
+      ],
+      "fact_ids": [
+        "fact_incident_attributed_internal",
+        "fact_incident_attributed_sup_a"
+      ],
+      "fallback": false,
+      "grounding_valid": true,
+      "latency_ms": 35.19580001011491,
+      "provenance_status": "INSUFFICIENT",
+      "question": "Screen which source has a production delay signal.",
+      "scenario_id": "multi_investigation_screening",
+      "selected_hypothesis": null,
+      "status": "COMPLETED",
+      "supporting_evidence_ids": [
+        "ev_robot_arm_calibration_fault",
+        "ev_wh_log_apx101_late"
+      ]
+    },
+    {
+      "case": "unsupported",
+      "claim_type": null,
+      "contradicting_evidence_ids": [],
+      "decision": null,
+      "document_ids": [],
+      "fact_ids": [],
+      "fallback": false,
+      "grounding_valid": null,
+      "latency_ms": 0.10559998918324709,
+      "provenance_status": null,
+      "question": "What will next quarter's stock price be?",
+      "scenario_id": null,
+      "selected_hypothesis": null,
+      "status": "UNSUPPORTED",
+      "supporting_evidence_ids": []
+    },
+    {
+      "case": "ambiguous",
+      "claim_type": null,
+      "contradicting_evidence_ids": [],
+      "decision": null,
+      "document_ids": [],
+      "fact_ids": [],
+      "fallback": false,
+      "grounding_valid": null,
+      "latency_ms": 0.09549999958835542,
+      "provenance_status": null,
+      "question": "What happened?",
+      "scenario_id": null,
+      "selected_hypothesis": null,
+      "status": "CLARIFICATION_REQUIRED",
+      "supporting_evidence_ids": []
+    }
+  ],
+  "live_groq": {
+    "reason": "paid calls are a separate explicit opt-in",
+    "status": "NOT_TESTED"
+  },
+  "live_neo4j": {
+    "reason": "live integration is verified by marked pytest tests",
+    "status": "NOT_RUN_BY_THIS_OFFLINE_BENCHMARK"
+  },
+  "schema_version": 1,
+  "synthetic_benchmark": {
+    "benchmark_version": "implementation-13-v1",
+    "calibration_bins": {
+      "expected_utility_h1": [
+        {
+          "average_confidence": 0.287199124726477,
+          "count": 7,
+          "empirical_accuracy": 0.42857142857142855,
+          "lower": 0.2,
+          "upper": 0.3
+        },
+        {
+          "average_confidence": 0.3675901132862163,
+          "count": 19,
+          "empirical_accuracy": 0.5263157894736842,
+          "lower": 0.3,
+          "upper": 0.4
+        },
+        {
+          "average_confidence": 0.4617405689936709,
+          "count": 81,
+          "empirical_accuracy": 0.49382716049382713,
+          "lower": 0.4,
+          "upper": 0.5
+        },
+        {
+          "average_confidence": 0.5485611435086044,
+          "count": 72,
+          "empirical_accuracy": 0.6388888888888888,
+          "lower": 0.5,
+          "upper": 0.6
+        },
+        {
+          "average_confidence": 0.6456205405624943,
+          "count": 180,
+          "empirical_accuracy": 0.6055555555555555,
+          "lower": 0.6,
+          "upper": 0.7
+        },
+        {
+          "average_confidence": 0.7515897197061235,
+          "count": 70,
+          "empirical_accuracy": 0.7857142857142857,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8660150331576176,
+          "count": 116,
+          "empirical_accuracy": 0.7931034482758621,
+          "lower": 0.8,
+          "upper": 0.9
+        },
+        {
+          "average_confidence": 0.9400509332805186,
+          "count": 455,
+          "empirical_accuracy": 0.9318681318681319,
+          "lower": 0.9,
+          "upper": 1.0
+        }
+      ],
+      "fixed_order": [
+        {
+          "average_confidence": 0.36351757457557726,
+          "count": 16,
+          "empirical_accuracy": 0.375,
+          "lower": 0.3,
+          "upper": 0.4
+        },
+        {
+          "average_confidence": 0.4534607923478194,
+          "count": 56,
+          "empirical_accuracy": 0.5892857142857143,
+          "lower": 0.4,
+          "upper": 0.5
+        },
+        {
+          "average_confidence": 0.563508100948242,
+          "count": 53,
+          "empirical_accuracy": 0.6226415094339622,
+          "lower": 0.5,
+          "upper": 0.6
+        },
+        {
+          "average_confidence": 0.6466088807698246,
+          "count": 175,
+          "empirical_accuracy": 0.6114285714285714,
+          "lower": 0.6,
+          "upper": 0.7
+        },
+        {
+          "average_confidence": 0.7565542235673254,
+          "count": 21,
+          "empirical_accuracy": 0.7619047619047619,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8484797419854156,
+          "count": 433,
+          "empirical_accuracy": 0.8429561200923787,
+          "lower": 0.8,
+          "upper": 0.9
+        },
+        {
+          "average_confidence": 0.923943220345792,
+          "count": 246,
+          "empirical_accuracy": 0.926829268292683,
+          "lower": 0.9,
+          "upper": 1.0
+        }
+      ],
+      "greedy_information_gain": [
+        {
+          "average_confidence": 0.3675901132862163,
+          "count": 19,
+          "empirical_accuracy": 0.5263157894736842,
+          "lower": 0.3,
+          "upper": 0.4
+        },
+        {
+          "average_confidence": 0.4560312614120356,
+          "count": 63,
+          "empirical_accuracy": 0.49206349206349204,
+          "lower": 0.4,
+          "upper": 0.5
+        },
+        {
+          "average_confidence": 0.5614493379229777,
+          "count": 44,
+          "empirical_accuracy": 0.6818181818181818,
+          "lower": 0.5,
+          "upper": 0.6
+        },
+        {
+          "average_confidence": 0.6431391111080191,
+          "count": 148,
+          "empirical_accuracy": 0.5945945945945946,
+          "lower": 0.6,
+          "upper": 0.7
+        },
+        {
+          "average_confidence": 0.7386130488305294,
+          "count": 3,
+          "empirical_accuracy": 0.6666666666666666,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8367537661247018,
+          "count": 600,
+          "empirical_accuracy": 0.8116666666666666,
+          "lower": 0.8,
+          "upper": 0.9
+        },
+        {
+          "average_confidence": 0.9321466539395723,
+          "count": 123,
+          "empirical_accuracy": 0.943089430894309,
+          "lower": 0.9,
+          "upper": 1.0
+        }
+      ],
+      "immediate": [
+        {
+          "average_confidence": 0.2,
+          "count": 1000,
+          "empirical_accuracy": 0.2,
+          "lower": 0.2,
+          "upper": 0.3
+        }
+      ],
+      "pomdp_h2": [
+        {
+          "average_confidence": 0.287199124726477,
+          "count": 7,
+          "empirical_accuracy": 0.42857142857142855,
+          "lower": 0.2,
+          "upper": 0.3
+        },
+        {
+          "average_confidence": 0.3675901132862163,
+          "count": 19,
+          "empirical_accuracy": 0.5263157894736842,
+          "lower": 0.3,
+          "upper": 0.4
+        },
+        {
+          "average_confidence": 0.4616856648961629,
+          "count": 81,
+          "empirical_accuracy": 0.49382716049382713,
+          "lower": 0.4,
+          "upper": 0.5
+        },
+        {
+          "average_confidence": 0.5468153340990192,
+          "count": 68,
+          "empirical_accuracy": 0.6764705882352942,
+          "lower": 0.5,
+          "upper": 0.6
+        },
+        {
+          "average_confidence": 0.6444881299793985,
+          "count": 171,
+          "empirical_accuracy": 0.6023391812865497,
+          "lower": 0.6,
+          "upper": 0.7
+        },
+        {
+          "average_confidence": 0.7462456189398015,
+          "count": 56,
+          "empirical_accuracy": 0.6964285714285714,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.866073397547591,
+          "count": 111,
+          "empirical_accuracy": 0.7927927927927928,
+          "lower": 0.8,
+          "upper": 0.9
+        },
+        {
+          "average_confidence": 0.9335976690115155,
+          "count": 487,
+          "empirical_accuracy": 0.9281314168377823,
+          "lower": 0.9,
+          "upper": 1.0
+        }
+      ]
+    },
+    "data_kind": "synthetic_calibrated_simulator",
+    "dataset_role": "final_evaluation_not_used_for_tuning",
+    "episodes_per_state": 200,
+    "ground_truth_policy_access": false,
+    "h2_minus_h1_realized_utility": {
+      "bootstrap_samples": 1000,
+      "ci95_high": 0.055857500000000004,
+      "ci95_low": 0.004385000000000006,
+      "mean_difference": 0.030892500000000007
+    },
+    "limitations": [
+      "Calibration is against the configured simulator, not real-world labels.",
+      "Unsupported-answer rate is not defined by the simulator; graph evidence is evaluated separately.",
+      "The five-state synthetic security benchmark is distinct from the supplier-delay demonstration."
+    ],
+    "policies": [
+      {
+        "abstained": 1000,
+        "abstention_rate": 1.0,
+        "answer_rate": 0.0,
+        "answered": 0,
+        "average_actions": 0,
+        "average_cost": 0.0,
+        "average_entropy_reduction": 0.0,
+        "average_realized_utility": -0.25,
+        "brier_score": 0.7999999999999887,
+        "correct": 0,
+        "cost_per_correct_answer": null,
+        "expected_calibration_error": 0.0,
+        "false_confident_rate": 0.0,
+        "incorrect": 0,
+        "log_loss": 1.6094379124341003,
+        "overall_correct_rate": 0.0,
+        "policy": "immediate",
+        "runtime_seconds": 0.03228379998472519,
+        "selective_accuracy": 0.0,
+        "total": 1000,
+        "unsupported_answer_rate": 0.0
+      },
+      {
+        "abstained": 321,
+        "abstention_rate": 0.321,
+        "answer_rate": 0.679,
+        "answered": 679,
+        "average_actions": 2.905,
+        "average_cost": 0.412875,
+        "average_entropy_reduction": 1.386798016049362,
+        "average_realized_utility": -0.330125,
+        "brier_score": 0.3240961295310477,
+        "correct": 593,
+        "cost_per_correct_answer": 0.696247892074199,
+        "expected_calibration_error": 0.020294596599481674,
+        "false_confident_rate": 0.086,
+        "incorrect": 86,
+        "log_loss": 0.6367486060554867,
+        "overall_correct_rate": 0.593,
+        "policy": "fixed_order",
+        "runtime_seconds": 0.12711219998891465,
+        "selective_accuracy": 0.8733431516936672,
+        "total": 1000,
+        "unsupported_answer_rate": 0.0
+      },
+      {
+        "abstained": 277,
+        "abstention_rate": 0.277,
+        "answer_rate": 0.723,
+        "answered": 723,
+        "average_actions": 2.6,
+        "average_cost": 0.3676225,
+        "average_entropy_reduction": 1.3215041009703425,
+        "average_realized_utility": -0.4338725,
+        "brier_score": 0.3666286423452266,
+        "correct": 603,
+        "cost_per_correct_answer": 0.6096558872305141,
+        "expected_calibration_error": 0.034380696340724715,
+        "false_confident_rate": 0.12,
+        "incorrect": 120,
+        "log_loss": 0.7356767448886953,
+        "overall_correct_rate": 0.603,
+        "policy": "greedy_information_gain",
+        "runtime_seconds": 0.6128542999795172,
+        "selective_accuracy": 0.8340248962655602,
+        "total": 1000,
+        "unsupported_answer_rate": 0.0
+      },
+      {
+        "abstained": 429,
+        "abstention_rate": 0.429,
+        "answer_rate": 0.571,
+        "answered": 571,
+        "average_actions": 3.379,
+        "average_cost": 0.4647525,
+        "average_entropy_reduction": 1.4534893138604044,
+        "average_realized_utility": -0.3310025,
+        "brier_score": 0.3256649699923814,
+        "correct": 516,
+        "cost_per_correct_answer": 0.9006831395348838,
+        "expected_calibration_error": 0.03488934096410961,
+        "false_confident_rate": 0.055,
+        "incorrect": 55,
+        "log_loss": 0.6157413332157202,
+        "overall_correct_rate": 0.516,
+        "policy": "expected_utility_h1",
+        "runtime_seconds": 1.3720167999854311,
+        "selective_accuracy": 0.9036777583187391,
+        "total": 1000,
+        "unsupported_answer_rate": 0.0
+      },
+      {
+        "abstained": 402,
+        "abstention_rate": 0.402,
+        "answer_rate": 0.598,
+        "answered": 598,
+        "average_actions": 3.274,
+        "average_cost": 0.44961,
+        "average_entropy_reduction": 1.454786600183025,
+        "average_realized_utility": -0.30011,
+        "brier_score": 0.3244521693167271,
+        "correct": 540,
+        "cost_per_correct_answer": 0.8326111111111112,
+        "expected_calibration_error": 0.03621884922265075,
+        "false_confident_rate": 0.058,
+        "incorrect": 58,
+        "log_loss": 0.6130989590016909,
+        "overall_correct_rate": 0.54,
+        "policy": "pomdp_h2",
+        "runtime_seconds": 7.139949599979445,
+        "selective_accuracy": 0.903010033444816,
+        "total": 1000,
+        "unsupported_answer_rate": 0.0
+      }
+    ],
+    "seed": 13000,
+    "state_distribution": {
+      "benign": 200,
+      "credential_compromise": 200,
+      "data_exfiltration": 200,
+      "lateral_movement": 200,
+      "malware_compromise": 200
+    },
+    "total_episodes_per_policy": 1000
+  }
+}

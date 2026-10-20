@@ -1,0 +1,1111 @@
+{
+  "purchase_logistic": {
+    "cases": 19245,
+    "answered": 19245,
+    "abstained": 0,
+    "correct_answers": 18573,
+    "incorrect_answers": 672,
+    "coverage": 1.0,
+    "selective_accuracy": 0.9650818394388153,
+    "abstention_rate": 0.0,
+    "brier_score": 0.03389379731020863,
+    "log_loss": 0.15376428632034217,
+    "expected_calibration_error": 0.017920543245749564,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 19245,
+        "average_probability_late": 0.052838703806934284,
+        "empirical_late_rate": 0.03491816056118472
+      }
+    ],
+    "confusion_matrix_answered": {
+      "true_positive": 0,
+      "true_negative": 18573,
+      "false_positive": 0,
+      "false_negative": 672
+    },
+    "expected_utility": 13143.714871413338,
+    "realized_utility": 15213.0,
+    "average_action_count": 0.0,
+    "investigation_cost": 0.0,
+    "uncertainty": {
+      "coverage_95": [
+        1.0,
+        1.0
+      ],
+      "selective_accuracy_95": [
+        0.9626916082099246,
+        0.9672642244738893
+      ],
+      "brier_95": [
+        0.031943519157820455,
+        0.036020326583046075
+      ]
+    }
+  },
+  "approval_logistic": {
+    "cases": 19242,
+    "answered": 19205,
+    "abstained": 37,
+    "correct_answers": 18536,
+    "incorrect_answers": 669,
+    "coverage": 0.9980771229601912,
+    "selective_accuracy": 0.9651653215308513,
+    "abstention_rate": 0.001922877039808757,
+    "brier_score": 0.0338531756711101,
+    "log_loss": 0.15357401288294267,
+    "expected_calibration_error": 0.01811625072107939,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 19235,
+        "average_probability_late": 0.05294374883610458,
+        "empirical_late_rate": 0.03483233688588511
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 7,
+        "average_probability_late": 0.1114446410659923,
+        "empirical_late_rate": 0.14285714285714285
+      }
+    ],
+    "confusion_matrix_answered": {
+      "true_positive": 0,
+      "true_negative": 18536,
+      "false_positive": 0,
+      "false_negative": 669
+    },
+    "expected_utility": 13111.856040510058,
+    "realized_utility": 15191.0,
+    "average_action_count": 0.0,
+    "investigation_cost": 0.0,
+    "uncertainty": {
+      "coverage_95": [
+        0.9974534871634965,
+        0.9985448498077123
+      ],
+      "selective_accuracy_95": [
+        0.962594425631675,
+        0.9677637746068118
+      ],
+      "brier_95": [
+        0.03154595516927591,
+        0.036188486649950384
+      ]
+    }
+  },
+  "carrier_logistic": {
+    "cases": 19244,
+    "answered": 18781,
+    "abstained": 463,
+    "correct_answers": 18256,
+    "incorrect_answers": 525,
+    "coverage": 0.975940552899605,
+    "selective_accuracy": 0.9720462169213567,
+    "abstention_rate": 0.02405944710039498,
+    "brier_score": 0.03194938828668092,
+    "log_loss": 0.13807011258926774,
+    "expected_calibration_error": 0.029172668040707988,
+    "reliability_bins": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "count": 18432,
+        "average_probability_late": 0.04772133175518513,
+        "empirical_late_rate": 0.02392578125
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 637,
+        "average_probability_late": 0.13365725255156577,
+        "empirical_late_rate": 0.2543171114599686
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 108,
+        "average_probability_late": 0.24048257703418013,
+        "empirical_late_rate": 0.4722222222222222
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 34,
+        "average_probability_late": 0.3305424171901126,
+        "empirical_late_rate": 0.7941176470588235
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 20,
+        "average_probability_late": 0.4489904504187301,
+        "empirical_late_rate": 0.6
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 7,
+        "average_probability_late": 0.5502191744985618,
+        "empirical_late_rate": 0.7142857142857143
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 2,
+        "average_probability_late": 0.615781977627273,
+        "empirical_late_rate": 0.5
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 2,
+        "average_probability_late": 0.7508645068083177,
+        "empirical_late_rate": 1.0
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 2,
+        "average_probability_late": 0.874512234229263,
+        "empirical_late_rate": 1.0
+      }
+    ],
+    "confusion_matrix_answered": {
+      "true_positive": 1,
+      "true_negative": 18255,
+      "false_positive": 0,
+      "false_negative": 525
+    },
+    "expected_utility": 13266.48611044597,
+    "realized_utility": 15631.0,
+    "average_action_count": 0.0,
+    "investigation_cost": 0.0,
+    "uncertainty": {
+      "coverage_95": [
+        0.9739139472043234,
+        0.9780191228434837
+      ],
+      "selective_accuracy_95": [
+        0.9694046159586376,
+        0.9743003086091305
+      ],
+      "brier_95": [
+        0.030239070913855675,
+        0.03410776198536454
+      ]
+    }
+  },
+  "subgroups": {
+    "PURCHASE": {
+      "seller_history_missing": {
+        "cases": 817,
+        "answered": 817,
+        "abstained": 0,
+        "correct_answers": 789,
+        "incorrect_answers": 28,
+        "coverage": 1.0,
+        "selective_accuracy": 0.9657282741738066,
+        "abstention_rate": 0.0,
+        "brier_score": 0.03319231356690952,
+        "log_loss": 0.15058706583150422,
+        "expected_calibration_error": 0.014757028402589675,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 817,
+            "average_probability_late": 0.04902875422878306,
+            "empirical_late_rate": 0.03427172582619339
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 789,
+          "false_positive": 0,
+          "false_negative": 28
+        },
+        "expected_utility": 576.6610467705055,
+        "realized_utility": 649.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "seller_history_available": {
+        "cases": 18428,
+        "answered": 18428,
+        "abstained": 0,
+        "correct_answers": 17784,
+        "incorrect_answers": 644,
+        "coverage": 1.0,
+        "selective_accuracy": 0.9650531799435641,
+        "abstention_rate": 0.0,
+        "brier_score": 0.03392489738717171,
+        "log_loss": 0.15390514746313472,
+        "expected_calibration_error": 0.01806079675274227,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 18428,
+            "average_probability_late": 0.05300761680917813,
+            "empirical_late_rate": 0.03494682005643586
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 17784,
+          "false_positive": 0,
+          "false_negative": 644
+        },
+        "expected_utility": 12567.053824642819,
+        "realized_utility": 14564.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      }
+    },
+    "APPROVAL": {
+      "seller_history_missing": {
+        "cases": 804,
+        "answered": 803,
+        "abstained": 1,
+        "correct_answers": 775,
+        "incorrect_answers": 28,
+        "coverage": 0.9987562189054726,
+        "selective_accuracy": 0.9651307596513076,
+        "abstention_rate": 0.0012437810945273853,
+        "brier_score": 0.03358330187658345,
+        "log_loss": 0.15102937381961426,
+        "expected_calibration_error": 0.014340320457559029,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 804,
+            "average_probability_late": 0.0491661911043252,
+            "empirical_late_rate": 0.03482587064676617
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 775,
+          "false_positive": 0,
+          "false_negative": 28
+        },
+        "expected_utility": 566.3954517473126,
+        "realized_utility": 635.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "seller_history_available": {
+        "cases": 18438,
+        "answered": 18402,
+        "abstained": 36,
+        "correct_answers": 17761,
+        "incorrect_answers": 641,
+        "coverage": 0.9980475105759844,
+        "selective_accuracy": 0.9651668296924247,
+        "abstention_rate": 0.001952489424015602,
+        "brier_score": 0.03386494367907188,
+        "log_loss": 0.15368497338879558,
+        "expected_calibration_error": 0.018280902414965407,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 18431,
+            "average_probability_late": 0.05310853405754404,
+            "empirical_late_rate": 0.03483261895719169
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 7,
+            "average_probability_late": 0.1114446410659923,
+            "empirical_late_rate": 0.14285714285714285
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 17761,
+          "false_positive": 0,
+          "false_negative": 641
+        },
+        "expected_utility": 12545.460588762735,
+        "realized_utility": 14556.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      }
+    },
+    "CARRIER_HANDOFF": {
+      "seller_history_missing": {
+        "cases": 752,
+        "answered": 744,
+        "abstained": 8,
+        "correct_answers": 728,
+        "incorrect_answers": 16,
+        "coverage": 0.9893617021276596,
+        "selective_accuracy": 0.978494623655914,
+        "abstention_rate": 0.010638297872340385,
+        "brier_score": 0.024611261888748327,
+        "log_loss": 0.11049230464182656,
+        "expected_calibration_error": 0.034490746141661116,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 733,
+            "average_probability_late": 0.042427667782813254,
+            "empirical_late_rate": 0.01637107776261937
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 15,
+            "average_probability_late": 0.12965145776102974,
+            "empirical_late_rate": 0.4
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 2,
+            "average_probability_late": 0.2721597251593102,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 2,
+            "average_probability_late": 0.3366740347694456,
+            "empirical_late_rate": 1.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 728,
+          "false_positive": 0,
+          "false_negative": 16
+        },
+        "expected_utility": 550.232116105565,
+        "realized_utility": 648.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "seller_history_available": {
+        "cases": 18492,
+        "answered": 18037,
+        "abstained": 455,
+        "correct_answers": 17528,
+        "incorrect_answers": 509,
+        "coverage": 0.9753947653039152,
+        "selective_accuracy": 0.9717802295281921,
+        "abstention_rate": 0.024605234696084777,
+        "brier_score": 0.03224780225224686,
+        "log_loss": 0.13919159818176588,
+        "expected_calibration_error": 0.02895640183197357,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 17699,
+            "average_probability_late": 0.047940567626802086,
+            "empirical_late_rate": 0.024238657551274082
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 622,
+            "average_probability_late": 0.1337538553198263,
+            "empirical_late_rate": 0.2508038585209003
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 106,
+            "average_probability_late": 0.23988489499408333,
+            "empirical_late_rate": 0.46226415094339623
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 32,
+            "average_probability_late": 0.33015919109140435,
+            "empirical_late_rate": 0.78125
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 20,
+            "average_probability_late": 0.4489904504187301,
+            "empirical_late_rate": 0.6
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 7,
+            "average_probability_late": 0.5502191744985618,
+            "empirical_late_rate": 0.7142857142857143
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 2,
+            "average_probability_late": 0.615781977627273,
+            "empirical_late_rate": 0.5
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 2,
+            "average_probability_late": 0.7508645068083177,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 2,
+            "average_probability_late": 0.874512234229263,
+            "empirical_late_rate": 1.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 1,
+          "true_negative": 17527,
+          "false_positive": 0,
+          "false_negative": 509
+        },
+        "expected_utility": 12716.253994340397,
+        "realized_utility": 14983.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      }
+    }
+  },
+  "temporal_stability": {
+    "PURCHASE": {
+      "test_quarter_1": {
+        "decision_start": "2018-05-25T16:23:48",
+        "decision_end": "2018-06-20T16:55:30",
+        "cases": 4811,
+        "answered": 4811,
+        "abstained": 0,
+        "correct_answers": 4757,
+        "incorrect_answers": 54,
+        "coverage": 1.0,
+        "selective_accuracy": 0.9887757223030555,
+        "abstention_rate": 0.0,
+        "brier_score": 0.012716654539018593,
+        "log_loss": 0.08540867497524321,
+        "expected_calibration_error": 0.04021080431775306,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4811,
+            "average_probability_late": 0.05143508201469756,
+            "empirical_late_rate": 0.011224277696944502
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4757,
+          "false_positive": 0,
+          "false_negative": 54
+        },
+        "expected_utility": 3326.2749225637426,
+        "realized_utility": 4487.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_2": {
+        "decision_start": "2018-06-20T17:02:01",
+        "decision_end": "2018-07-18T09:53:17",
+        "cases": 4811,
+        "answered": 4811,
+        "abstained": 0,
+        "correct_answers": 4701,
+        "incorrect_answers": 110,
+        "coverage": 1.0,
+        "selective_accuracy": 0.9771357306173353,
+        "abstention_rate": 0.0,
+        "brier_score": 0.02316826752349986,
+        "log_loss": 0.11948417799439087,
+        "expected_calibration_error": 0.029783812751346395,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4811,
+            "average_probability_late": 0.05264808213401112,
+            "empirical_late_rate": 0.022864269382664726
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4701,
+          "false_positive": 0,
+          "false_negative": 110
+        },
+        "expected_utility": 3291.2604611196434,
+        "realized_utility": 4151.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_3": {
+        "decision_start": "2018-07-18T10:00:40",
+        "decision_end": "2018-08-06T11:22:17",
+        "cases": 4811,
+        "answered": 4811,
+        "abstained": 0,
+        "correct_answers": 4551,
+        "incorrect_answers": 260,
+        "coverage": 1.0,
+        "selective_accuracy": 0.9459571814591561,
+        "abstention_rate": 0.0,
+        "brier_score": 0.050999417998538694,
+        "log_loss": 0.20903905965787942,
+        "expected_calibration_error": 0.0007412310617198811,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4811,
+            "average_probability_late": 0.053301587479124016,
+            "empirical_late_rate": 0.0540428185408439
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4551,
+          "false_positive": 0,
+          "false_negative": 260
+        },
+        "expected_utility": 3272.3963758276063,
+        "realized_utility": 3251.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_4": {
+        "decision_start": "2018-08-06T11:23:19",
+        "decision_end": "2018-08-29T15:00:37",
+        "cases": 4812,
+        "answered": 4812,
+        "abstained": 0,
+        "correct_answers": 4564,
+        "incorrect_answers": 248,
+        "coverage": 1.0,
+        "selective_accuracy": 0.9484621778886118,
+        "abstention_rate": 0.0,
+        "brier_score": 0.0486877741482168,
+        "log_loss": 0.2011153903956812,
+        "expected_calibration_error": 0.002432006376339814,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4812,
+            "average_probability_late": 0.05396982848772801,
+            "empirical_late_rate": 0.051537822111388194
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4564,
+          "false_positive": 0,
+          "false_negative": 248
+        },
+        "expected_utility": 3253.7831119023117,
+        "realized_utility": 3324.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      }
+    },
+    "APPROVAL": {
+      "test_quarter_1": {
+        "decision_start": "2018-05-26T02:18:29",
+        "decision_end": "2018-06-20T23:15:37",
+        "cases": 4810,
+        "answered": 4807,
+        "abstained": 3,
+        "correct_answers": 4754,
+        "incorrect_answers": 53,
+        "coverage": 0.9993762993762993,
+        "selective_accuracy": 0.9889744123153734,
+        "abstention_rate": 0.0006237006237006515,
+        "brier_score": 0.012513592069287609,
+        "log_loss": 0.08449162899285813,
+        "expected_calibration_error": 0.04006764118626193,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4809,
+            "average_probability_late": 0.05107553521458881,
+            "empirical_late_rate": 0.011021002287377834
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 1,
+            "average_probability_late": 0.10310525896227199,
+            "empirical_late_rate": 0.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4754,
+          "false_positive": 0,
+          "false_negative": 53
+        },
+        "expected_utility": 3334.385430265195,
+        "realized_utility": 4489.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_2": {
+        "decision_start": "2018-06-21T00:39:08",
+        "decision_end": "2018-07-18T12:35:21",
+        "cases": 4811,
+        "answered": 4797,
+        "abstained": 14,
+        "correct_answers": 4687,
+        "incorrect_answers": 110,
+        "coverage": 0.9970900020785699,
+        "selective_accuracy": 0.9770690014592454,
+        "abstention_rate": 0.0029099979214300964,
+        "brier_score": 0.02327137294871073,
+        "log_loss": 0.12024778397465967,
+        "expected_calibration_error": 0.030542241077800087,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4807,
+            "average_probability_late": 0.05336301215275061,
+            "empirical_late_rate": 0.02288329519450801
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 4,
+            "average_probability_late": 0.10568060175600325,
+            "empirical_late_rate": 0.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4687,
+          "false_positive": 0,
+          "false_negative": 110
+        },
+        "expected_utility": 3263.6411086575217,
+        "realized_utility": 4137.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_3": {
+        "decision_start": "2018-07-18T12:42:07",
+        "decision_end": "2018-08-06T19:50:19",
+        "cases": 4810,
+        "answered": 4799,
+        "abstained": 11,
+        "correct_answers": 4546,
+        "incorrect_answers": 253,
+        "coverage": 0.9977130977130977,
+        "selective_accuracy": 0.9472806834757241,
+        "abstention_rate": 0.002286902286902315,
+        "brier_score": 0.04975026205373484,
+        "log_loss": 0.20518273561294947,
+        "expected_calibration_error": 0.000835627152318684,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4810,
+            "average_probability_late": 0.053434379751071286,
+            "empirical_late_rate": 0.0525987525987526
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4546,
+          "false_positive": 0,
+          "false_negative": 253
+        },
+        "expected_utility": 3263.0988603923242,
+        "realized_utility": 3281.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_4": {
+        "decision_start": "2018-08-06T20:04:44",
+        "decision_end": "2018-08-29T15:10:26",
+        "cases": 4811,
+        "answered": 4802,
+        "abstained": 9,
+        "correct_answers": 4549,
+        "incorrect_answers": 253,
+        "coverage": 0.9981292870505093,
+        "selective_accuracy": 0.9473136193252811,
+        "abstention_rate": 0.0018707129494907049,
+        "brier_score": 0.04987634435159325,
+        "log_loss": 0.20437027092861373,
+        "expected_calibration_error": 0.001239058235941214,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4809,
+            "average_probability_late": 0.05390214056863981,
+            "empirical_late_rate": 0.052817633603659805
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 2,
+            "average_probability_late": 0.1271424107378306,
+            "empirical_late_rate": 0.5
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4549,
+          "false_positive": 0,
+          "false_negative": 253
+        },
+        "expected_utility": 3250.7306411950594,
+        "realized_utility": 3284.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      }
+    },
+    "CARRIER_HANDOFF": {
+      "test_quarter_1": {
+        "decision_start": "2018-05-29T09:40:00",
+        "decision_end": "2018-06-22T14:38:00",
+        "cases": 4811,
+        "answered": 4721,
+        "abstained": 90,
+        "correct_answers": 4671,
+        "incorrect_answers": 50,
+        "coverage": 0.9812928705050925,
+        "selective_accuracy": 0.9894090235119678,
+        "abstention_rate": 0.018707129494907493,
+        "brier_score": 0.014597458346096047,
+        "log_loss": 0.08251227081222268,
+        "expected_calibration_error": 0.03123248498080115,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4675,
+            "average_probability_late": 0.03948975604781442,
+            "empirical_late_rate": 0.010481283422459893
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 96,
+            "average_probability_late": 0.13765808505703955,
+            "empirical_late_rate": 0.08333333333333333
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 25,
+            "average_probability_late": 0.24447299355903718,
+            "empirical_late_rate": 0.36
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 8,
+            "average_probability_late": 0.32442175322566263,
+            "empirical_late_rate": 0.75
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 3,
+            "average_probability_late": 0.44674330513285937,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 2,
+            "average_probability_late": 0.5932658235578905,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 1,
+            "average_probability_late": 0.6095112341958381,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 1,
+            "average_probability_late": 0.7268287848824532,
+            "empirical_late_rate": 1.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4671,
+          "false_positive": 0,
+          "false_negative": 50
+        },
+        "expected_utility": 3582.3548728045457,
+        "realized_utility": 4421.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_2": {
+        "decision_start": "2018-06-22T14:38:00",
+        "decision_end": "2018-07-20T13:06:00",
+        "cases": 4811,
+        "answered": 4742,
+        "abstained": 69,
+        "correct_answers": 4681,
+        "incorrect_answers": 61,
+        "coverage": 0.9856578673872376,
+        "selective_accuracy": 0.9871362294390552,
+        "abstention_rate": 0.014342132612762404,
+        "brier_score": 0.01528431345056974,
+        "log_loss": 0.0903971122512089,
+        "expected_calibration_error": 0.03522823663297944,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4698,
+            "average_probability_late": 0.04607360287331246,
+            "empirical_late_rate": 0.01277139208173691
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 85,
+            "average_probability_late": 0.13507988994089756,
+            "empirical_late_rate": 0.047058823529411764
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 17,
+            "average_probability_late": 0.24754889877751066,
+            "empirical_late_rate": 0.17647058823529413
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 2,
+            "average_probability_late": 0.30588759973210655,
+            "empirical_late_rate": 0.0
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 7,
+            "average_probability_late": 0.45101496383277107,
+            "empirical_late_rate": 0.0
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 1,
+            "average_probability_late": 0.5708400121099937,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 1,
+            "average_probability_late": 0.8589017159354345,
+            "empirical_late_rate": 1.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4681,
+          "false_positive": 0,
+          "false_negative": 61
+        },
+        "expected_utility": 3413.362740626446,
+        "realized_utility": 4376.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_3": {
+        "decision_start": "2018-07-20T13:07:00",
+        "decision_end": "2018-08-08T16:13:00",
+        "cases": 4811,
+        "answered": 4682,
+        "abstained": 129,
+        "correct_answers": 4507,
+        "incorrect_answers": 175,
+        "coverage": 0.9731864477239659,
+        "selective_accuracy": 0.9626228107646305,
+        "abstention_rate": 0.026813552276034103,
+        "brier_score": 0.04040417095885359,
+        "log_loss": 0.16821120620342853,
+        "expected_calibration_error": 0.02212133596264644,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4590,
+            "average_probability_late": 0.051660155248395644,
+            "empirical_late_rate": 0.03420479302832244
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 170,
+            "average_probability_late": 0.1346273490871322,
+            "empirical_late_rate": 0.17647058823529413
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 34,
+            "average_probability_late": 0.23888285043650317,
+            "empirical_late_rate": 0.5588235294117647
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 12,
+            "average_probability_late": 0.3373398467516486,
+            "empirical_late_rate": 0.8333333333333334
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 1,
+            "average_probability_late": 0.4184409399621302,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 2,
+            "average_probability_late": 0.5244450591279448,
+            "empirical_late_rate": 0.0
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 1,
+            "average_probability_late": 0.6220527210587079,
+            "empirical_late_rate": 0.0
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 1,
+            "average_probability_late": 0.8901227525230915,
+            "empirical_late_rate": 1.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 1,
+          "true_negative": 4506,
+          "false_positive": 0,
+          "false_negative": 175
+        },
+        "expected_utility": 3196.710532259209,
+        "realized_utility": 3632.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      },
+      "test_quarter_4": {
+        "decision_start": "2018-08-08T16:18:00",
+        "decision_end": "2018-09-11T19:48:28",
+        "cases": 4811,
+        "answered": 4636,
+        "abstained": 175,
+        "correct_answers": 4397,
+        "incorrect_answers": 239,
+        "coverage": 0.9636250259821243,
+        "selective_accuracy": 0.9484469370146679,
+        "abstention_rate": 0.036374974017875705,
+        "brier_score": 0.0575116103912043,
+        "log_loss": 0.21115986109021087,
+        "expected_calibration_error": 0.036054387573319656,
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 4469,
+            "average_probability_late": 0.05401903748021525,
+            "empirical_late_rate": 0.039158648467218615
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 286,
+            "average_probability_late": 0.1313148731471428,
+            "empirical_late_rate": 0.4195804195804196
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 32,
+            "average_probability_late": 0.23531079020802298,
+            "empirical_late_rate": 0.625
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 12,
+            "average_probability_late": 0.3319345665145445,
+            "empirical_late_rate": 0.9166666666666666
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 9,
+            "average_probability_late": 0.4515592673538329,
+            "empirical_late_rate": 0.8888888888888888
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 2,
+            "average_probability_late": 0.5226362220041345,
+            "empirical_late_rate": 1.0
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 1,
+            "average_probability_late": 0.7749002287341823,
+            "empirical_late_rate": 1.0
+          }
+        ],
+        "confusion_matrix_answered": {
+          "true_positive": 0,
+          "true_negative": 4397,
+          "false_positive": 0,
+          "false_negative": 239
+        },
+        "expected_utility": 3074.0579647557297,
+        "realized_utility": 3202.0,
+        "average_action_count": 0.0,
+        "investigation_cost": 0.0
+      }
+    }
+  },
+  "evaluation_runtime_seconds": {
+    "PURCHASE": 15.40746830002172,
+    "APPROVAL": 16.742310900008306,
+    "CARRIER_HANDOFF": 17.094105000025593
+  }
+}

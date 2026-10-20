@@ -1,0 +1,27 @@
+{
+  "dataset_validation": {
+    "biased_selection_records": 0,
+    "case_count": 60,
+    "definitive_labels": 60,
+    "errors": [],
+    "label_counts": {
+      "delayed": 30,
+      "on_time": 30
+    },
+    "missing_observations": 0,
+    "observation_count": 60,
+    "unknown_source_dependencies": 0,
+    "unresolved_labels": 0,
+    "valid": true,
+    "warnings": []
+  },
+  "document_extraction_quality": {
+    "reason": "The bundled case-level fixture has no independently annotated document corpus; parser correctness is covered by regression fixtures only.",
+    "status": "NOT_MEASURED"
+  },
+  "source_independence_validation": {
+    "known_source_group_coverage": 1.0,
+    "reason": "Source groups are synthetic metadata; genuine organizational dependence remains pending review.",
+    "status": "STRUCTURE_VERIFIED_NOT_EMPIRICALLY_VALIDATED"
+  }
+}

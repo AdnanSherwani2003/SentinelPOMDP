@@ -1,0 +1,38 @@
+{
+  "api_ms": {
+    "max": 106.04939999757335,
+    "median": 76.49920000403654,
+    "min": 73.68440000573173,
+    "p95": 90.32450002268888
+  },
+  "authoritative_last_request_timings_ms": {
+    "graph_ms": 19.474800006719306,
+    "model_ms": 0.30590000096708536,
+    "planning_ms": 0.3516999713610858,
+    "request_ms": 68.4567000134848
+  },
+  "backend": "neo4j",
+  "direct_ms": {
+    "max": 69.12239998928271,
+    "median": 55.446800019126385,
+    "min": 53.58360000536777,
+    "p95": 58.035100024426356
+  },
+  "limitations": [
+    "Local TestClient benchmark; not a production network load test."
+  ],
+  "median_overhead_ms": {
+    "http_over_protected": 5.6682499998714775,
+    "security": 15.384149985038675
+  },
+  "parity": true,
+  "protected_ms": {
+    "max": 102.5560999987647,
+    "median": 70.83095000416506,
+    "min": 65.766599989729,
+    "p95": 75.5549999885261
+  },
+  "provider": "fake",
+  "samples": 10,
+  "warmup_requests_per_path": 1
+}

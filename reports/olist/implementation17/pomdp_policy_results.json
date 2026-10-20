@@ -1,0 +1,17 @@
+{
+  "one_step": {
+    "status": "NOT_EVALUABLE",
+    "reason": "No on-demand investigation action with a logged counterfactual observation exists in Olist."
+  },
+  "horizon_two": {
+    "status": "NOT_EVALUABLE",
+    "reason": "The archive cannot identify outcomes for unperformed action sequences."
+  },
+  "immediate_abstention": {
+    "coverage": 0.0,
+    "selective_accuracy": null,
+    "realized_utility": 0.0,
+    "average_action_count": 0.0
+  },
+  "conclusion": "No POMDP planning value is identifiable from unperformed investigations in this archive."
+}

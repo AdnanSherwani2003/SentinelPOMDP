@@ -1,0 +1,1234 @@
+{
+  "calibration_estimate": {
+    "action_state_counts": {
+      "inspect_delivery": {
+        "delayed": 18,
+        "on_time": 18
+      }
+    },
+    "class_counts": {
+      "delayed": 18,
+      "on_time": 18
+    },
+    "dataset_id": "representative-shipment-pilot",
+    "dataset_version": "synthetic-v1",
+    "excluded_cases": 0,
+    "labels": [
+      "delayed",
+      "on_time"
+    ],
+    "likelihood_intervals": {
+      "inspect_delivery": {
+        "delayed": {
+          "EVIDENCE_CONTRADICTED": {
+            "count": 4,
+            "denominator": 18,
+            "estimate": 0.23684210526315788,
+            "high": 0.4521502645230549,
+            "low": 0.09000781913382
+          },
+          "EVIDENCE_SUPPORTED": {
+            "count": 14,
+            "denominator": 18,
+            "estimate": 0.7631578947368421,
+            "high": 0.90999218086618,
+            "low": 0.5478497354769452
+          }
+        },
+        "on_time": {
+          "EVIDENCE_CONTRADICTED": {
+            "count": 15,
+            "denominator": 18,
+            "estimate": 0.8157894736842105,
+            "high": 0.9416352959953425,
+            "low": 0.6077750036164076
+          },
+          "EVIDENCE_SUPPORTED": {
+            "count": 3,
+            "denominator": 18,
+            "estimate": 0.18421052631578946,
+            "high": 0.39222499638359243,
+            "low": 0.05836470400465757
+          }
+        }
+      }
+    },
+    "method": "categorical_counts_dirichlet_smoothing_wilson_intervals",
+    "observation_model": {
+      "inspect_delivery": {
+        "delayed": {
+          "EVIDENCE_CONTRADICTED": 0.23684210526315788,
+          "EVIDENCE_SUPPORTED": 0.7631578947368421
+        },
+        "on_time": {
+          "EVIDENCE_CONTRADICTED": 0.8157894736842105,
+          "EVIDENCE_SUPPORTED": 0.18421052631578946
+        }
+      }
+    },
+    "prior": {
+      "delayed": 0.5,
+      "on_time": 0.5
+    },
+    "prior_intervals": {
+      "delayed": {
+        "count": 18,
+        "denominator": 36,
+        "estimate": 0.5,
+        "high": 0.6552593237526947,
+        "low": 0.34474067624730526
+      },
+      "on_time": {
+        "count": 18,
+        "denominator": 36,
+        "estimate": 0.5,
+        "high": 0.6552593237526947,
+        "low": 0.34474067624730526
+      }
+    },
+    "smoothing_alpha": 0.5,
+    "split": "TRAIN",
+    "status": "EMPIRICALLY_ESTIMATED",
+    "usable_cases": 36,
+    "warnings": []
+  },
+  "candidate_domain_pack": {
+    "actions": [
+      {
+        "action_id": "inspect_delivery",
+        "cost": 0.08,
+        "relation_hypotheses": {
+          "EXPERIENCED_DELAY": "delayed"
+        }
+      }
+    ],
+    "answer_threshold": 0.8,
+    "approved_by": null,
+    "calibration": {
+      "effective_at": null,
+      "estimated_at": "2026-10-18T13:27:02.112526Z",
+      "limitations": [
+        "Synthetic representative fixture; real-world calibration is pending.",
+        "Only logged actions are replayed; counterfactual policy effects are not identifiable."
+      ],
+      "method": "categorical_counts_dirichlet_smoothing_wilson_intervals",
+      "sample_counts": {
+        "action:inspect_delivery:state:delayed": 18,
+        "action:inspect_delivery:state:on_time": 18,
+        "class:delayed": 18,
+        "class:on_time": 18
+      },
+      "split_manifest_strategy": "chronological_group_holdout",
+      "status": "VALIDATED_ON_HOLDOUT",
+      "training_dataset_id": "representative-shipment-pilot",
+      "training_dataset_version": "synthetic-v1",
+      "validation_results": {
+        "brier_score": 0.28195216049382715,
+        "coverage": 0.5,
+        "expected_calibration_error": 0.043055555555555514,
+        "log_loss": 0.457070038055887,
+        "selective_accuracy": 0.8333333333333334,
+        "unsupported_answer_rate": 0.0
+      }
+    },
+    "calibration_note": "Estimated from training data only; approval requires independent review. Holdout metrics do not establish cross-organization validity.",
+    "claim_type": "shipment_timeliness",
+    "domain_id": "shipment-timeliness",
+    "hypotheses": [
+      "delayed",
+      "on_time"
+    ],
+    "minimum_independent_sources": 1,
+    "model_version": "calibrated-synthetic-v1",
+    "name": "Shipment timeliness pilot",
+    "observation_model": {
+      "inspect_delivery": {
+        "delayed": {
+          "EVIDENCE_CONTRADICTED": 0.23684210526315788,
+          "EVIDENCE_SUPPORTED": 0.7631578947368421
+        },
+        "on_time": {
+          "EVIDENCE_CONTRADICTED": 0.8157894736842105,
+          "EVIDENCE_SUPPORTED": 0.18421052631578946
+        }
+      }
+    },
+    "parameter_source": "EMPIRICALLY_ESTIMATED",
+    "prior": {
+      "delayed": 0.5,
+      "on_time": 0.5
+    },
+    "status": "PROVISIONAL"
+  },
+  "dataset": {
+    "authorized_use": true,
+    "classification": "SYNTHETIC_REPRESENTATIVE",
+    "id": "representative-shipment-pilot",
+    "version": "synthetic-v1"
+  },
+  "dataset_validation": {
+    "biased_selection_records": 0,
+    "case_count": 60,
+    "definitive_labels": 60,
+    "errors": [],
+    "label_counts": {
+      "delayed": 30,
+      "on_time": 30
+    },
+    "missing_observations": 0,
+    "observation_count": 60,
+    "unknown_source_dependencies": 0,
+    "unresolved_labels": 0,
+    "valid": true,
+    "warnings": []
+  },
+  "document_extraction_quality": {
+    "reason": "The bundled case-level fixture has no independently annotated document corpus; parser correctness is covered by regression fixtures only.",
+    "status": "NOT_MEASURED"
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15"
+  },
+  "evaluation_split": "TEST",
+  "implementation": 15,
+  "performance": {
+    "calibration_seconds": 0.000422,
+    "domain_pack_build_seconds": 0.000212,
+    "evaluated_policy_case_rows": 60,
+    "evaluation_rows_per_second": 16766.802,
+    "evaluation_seconds": 0.003579,
+    "python_peak_traced_memory_bytes": 429535,
+    "scope": "bounded local synthetic run; not a production benchmark"
+  },
+  "policy_identifiability": {
+    "counterfactual_outcomes_fabricated": false,
+    "limitation": "The one-action fixture cannot identify differences among investigation policies; their logged replay is intentionally identical."
+  },
+  "pomdp_minus_abstention_historical_assumptions": {
+    "bootstrap_samples": 1000,
+    "ci95_high": 0.7533333333333333,
+    "ci95_low": -1.455,
+    "mean_difference": -0.1216666666666667,
+    "paired_cases": 12
+  },
+  "privacy_safe": true,
+  "real_world_validation_status": "PENDING",
+  "reward_sensitivity": [
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.10000000000000002,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.12000000000000001,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.12000000000000001,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.12000000000000001,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.12000000000000001,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.25,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.045000000000000005,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.045000000000000005,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.045000000000000005,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.045000000000000005,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -1.0,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.33,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.33,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.33,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.33,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.10000000000000002,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.29666666666666663,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.29666666666666663,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.29666666666666663,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.29666666666666663,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.25,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.37166666666666665,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.37166666666666665,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.37166666666666665,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.37166666666666665,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -1.0,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.7466666666666667,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.7466666666666667,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.7466666666666667,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 1.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.7466666666666667,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.10000000000000002,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7866666666666668,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7866666666666668,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7866666666666668,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7866666666666668,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.25,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7116666666666667,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7116666666666667,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7116666666666667,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.7116666666666667,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -1.0,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.3366666666666667,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.3366666666666667,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.3366666666666667,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 2.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.3366666666666667,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.10000000000000002,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.37,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.37,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.37,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.1,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.37,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -0.25,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.295,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.295,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.295,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 0.25,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 1.295,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": -1.0,
+      "cases": 12,
+      "policy": "immediate_abstention"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.9199999999999999,
+      "cases": 12,
+      "policy": "logged_fixed_order"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.9199999999999999,
+      "cases": 12,
+      "policy": "logged_greedy_information_gain"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.9199999999999999,
+      "cases": 12,
+      "policy": "logged_expected_utility_h1"
+    },
+    {
+      "assumptions": {
+        "abstention_cost": 1.0,
+        "correct_answer_reward": 5.0,
+        "incorrect_answer_penalty": 7.0,
+        "operational_delay_cost_per_action": 0.0
+      },
+      "average_realized_utility": 0.9199999999999999,
+      "cases": 12,
+      "policy": "logged_pomdp_h2"
+    }
+  ],
+  "runtime_seconds": 0.060861,
+  "seed": 15001,
+  "source_independence_validation": {
+    "known_source_group_coverage": 1.0,
+    "reason": "Source groups are synthetic metadata; genuine organizational dependence remains pending review.",
+    "status": "STRUCTURE_VERIFIED_NOT_EMPIRICALLY_VALIDATED"
+  },
+  "split_manifest": {
+    "assignments": {
+      "ref-032d87744e8d8fd0": "TEST",
+      "ref-0dc328fdf39a0846": "TEST",
+      "ref-19288637012124ec": "TRAIN",
+      "ref-1cab93c5d99acd8f": "TRAIN",
+      "ref-1ed400c4fd9d9157": "VALIDATION",
+      "ref-2026641a9ab01599": "TRAIN",
+      "ref-21a0c6aff1cbbe14": "TEST",
+      "ref-21b5b9bfbc48a946": "TRAIN",
+      "ref-26d615055570ac1a": "TRAIN",
+      "ref-2b73a2eb460aa276": "TRAIN",
+      "ref-33960f0f043fec59": "VALIDATION",
+      "ref-346d9e9b4a5b86b6": "VALIDATION",
+      "ref-3627171e48fd8bc3": "TRAIN",
+      "ref-367956bbc4e4cb39": "VALIDATION",
+      "ref-368c23574b8d48f2": "VALIDATION",
+      "ref-3cd3fa259d8c609b": "TRAIN",
+      "ref-48cff5dd3a8ac22c": "TRAIN",
+      "ref-4ba476ac3188d256": "TEST",
+      "ref-4cee0070c8e29cb3": "TRAIN",
+      "ref-67cabee29533abf5": "TEST",
+      "ref-69ecd83ee58efdd1": "TEST",
+      "ref-71b99ef24b7be272": "VALIDATION",
+      "ref-729d9f33508cdfd8": "TRAIN",
+      "ref-729e6f1ab2876f2b": "TRAIN",
+      "ref-72ca9587e730095c": "TEST",
+      "ref-779ec826ced62863": "TRAIN",
+      "ref-78749b905147d1b8": "TRAIN",
+      "ref-7b8e033a7ffff304": "TRAIN",
+      "ref-8296efa677974839": "TEST",
+      "ref-84d372d3b06b4bb5": "VALIDATION",
+      "ref-84e1f93a9bd79d16": "TEST",
+      "ref-89005da591d457d9": "VALIDATION",
+      "ref-8b0cc996e57063c2": "TRAIN",
+      "ref-8dacaf1c30f1a669": "TRAIN",
+      "ref-9a7726c406d9df44": "TRAIN",
+      "ref-9da65b3df4ce7b6c": "TRAIN",
+      "ref-a1facf17826cfd18": "TRAIN",
+      "ref-a8c739abbaa1c734": "TEST",
+      "ref-ab01ac9b55655323": "TRAIN",
+      "ref-ad1b20903cdcef9a": "TRAIN",
+      "ref-b037cac8b84f5d29": "TRAIN",
+      "ref-b11f87a55782bb99": "TRAIN",
+      "ref-b16c819732b49089": "TRAIN",
+      "ref-b4b5b5085ac8a170": "TRAIN",
+      "ref-b85da4aab2acae63": "VALIDATION",
+      "ref-bc4a5c9b5a2b177b": "TRAIN",
+      "ref-c22cd5ba2ddcbbba": "TRAIN",
+      "ref-c4e22f8d3910422d": "TRAIN",
+      "ref-c6553d2d246a5422": "VALIDATION",
+      "ref-c71be64caae4e36c": "TRAIN",
+      "ref-cc428a8ca8d0bb17": "TEST",
+      "ref-cd46b9d8741e3c7e": "VALIDATION",
+      "ref-cf8e24995a8c8558": "TRAIN",
+      "ref-cfa662e6470bd93e": "TRAIN",
+      "ref-d3daa8771e45324e": "VALIDATION",
+      "ref-d83e4dbee1f451c8": "TRAIN",
+      "ref-e31522a3214bd8a3": "TRAIN",
+      "ref-f3a2f45a1ef48527": "TEST",
+      "ref-f4c78243a680b767": "TRAIN",
+      "ref-f8856c33fe5bcb04": "TRAIN"
+    },
+    "created_by": "deterministic-split-v1",
+    "dataset_id": "representative-shipment-pilot",
+    "dataset_version": "synthetic-v1",
+    "group_assignments": {
+      "ref-02ec5cb9eaf69f85": "TRAIN",
+      "ref-03c6b3b133fbe301": "TRAIN",
+      "ref-03c90379ec8165c5": "TRAIN",
+      "ref-09816be97194ca4b": "TRAIN",
+      "ref-09831070749f071f": "TRAIN",
+      "ref-0be2b219bb53e61c": "TRAIN",
+      "ref-0c2a24a607032780": "TRAIN",
+      "ref-0f7d8ae4978cdeef": "TRAIN",
+      "ref-11aec6fafd9c4f4f": "TRAIN",
+      "ref-128d8b1aae48d47b": "VALIDATION",
+      "ref-13651624070fc5d3": "VALIDATION",
+      "ref-1498e9631e6f8ae5": "TRAIN",
+      "ref-21a2d98ad7fb57e0": "TRAIN",
+      "ref-2784c804419d9fdb": "TRAIN",
+      "ref-2a526822cb09245f": "TRAIN",
+      "ref-2d8db359e986cfe4": "VALIDATION",
+      "ref-30ca9278fff48c4f": "TRAIN",
+      "ref-3546858423588ec3": "TEST",
+      "ref-39261dc76f8ec2eb": "TRAIN",
+      "ref-4093682e67e9c3ae": "VALIDATION",
+      "ref-4bcbdd95a7eda86e": "TRAIN",
+      "ref-4c16e3ff7c4a9454": "TRAIN",
+      "ref-4d72badfa49b203d": "VALIDATION",
+      "ref-50280f996d2aa57d": "TEST",
+      "ref-508f74b2b450b83c": "TEST",
+      "ref-5757f2c5df285936": "TEST",
+      "ref-58cdd0956ff3b5be": "TRAIN",
+      "ref-5c71c4e6c5ac8912": "TRAIN",
+      "ref-609eb5fc452cd762": "TRAIN",
+      "ref-61ff5e8c991452ca": "TRAIN",
+      "ref-66ef12b16b883952": "TRAIN",
+      "ref-6f493a13f2319a86": "VALIDATION",
+      "ref-7c2bb730e18b3511": "TEST",
+      "ref-7c65e91cc74ba823": "TRAIN",
+      "ref-8210f7ab45f26c3c": "VALIDATION",
+      "ref-8320c18b9da128e5": "VALIDATION",
+      "ref-9a69170a6c48f466": "TRAIN",
+      "ref-a27d33ee5129e468": "TEST",
+      "ref-a296fb2e5f73fbb9": "TRAIN",
+      "ref-a54d42e8b67af39d": "TRAIN",
+      "ref-ae0774af56131992": "TRAIN",
+      "ref-b0519045c21093b2": "VALIDATION",
+      "ref-b55cff185447ea74": "VALIDATION",
+      "ref-b949911b0bcb7bb5": "VALIDATION",
+      "ref-bdb49c4949668ef4": "TRAIN",
+      "ref-bf084e190dab5cf7": "TEST",
+      "ref-bf7d91ba5de361a1": "TRAIN",
+      "ref-c1e83bad5e0137d3": "TEST",
+      "ref-c95358889d4480c6": "TEST",
+      "ref-cbf4227c2d738d1b": "TRAIN",
+      "ref-cf83f5d9629b5061": "TRAIN",
+      "ref-d0562cb02fdc85bc": "TRAIN",
+      "ref-d6a6f8b77b4e89c8": "TRAIN",
+      "ref-e015f6255ca0388c": "TEST",
+      "ref-e9e1f5898547be20": "TRAIN",
+      "ref-ebebd4d1dfa30210": "TRAIN",
+      "ref-f0c7645e4d000e94": "TEST",
+      "ref-f30514120b9aa8a8": "TRAIN",
+      "ref-f49a2d4363418aff": "VALIDATION",
+      "ref-fb17d15dcc6aa94a": "TEST"
+    },
+    "strategy": "chronological_group_holdout",
+    "warnings": []
+  },
+  "subgroup_metrics": {
+    "A": {
+      "sample_count": 8,
+      "status": "INSUFFICIENT_DATA"
+    },
+    "B": {
+      "sample_count": 4,
+      "status": "INSUFFICIENT_DATA"
+    }
+  },
+  "test_metrics": {
+    "immediate_abstention": {
+      "abstained": 12,
+      "answered": 0,
+      "appropriate_abstentions": 12,
+      "average_investigation_cost": 0.0,
+      "correct_answers": 0,
+      "coverage": 0.0,
+      "expected_calibration_error": 0.0,
+      "false_answer_rate": 0.0,
+      "incorrect_answers": 0,
+      "log_loss": 0.6931471805599453,
+      "multiclass_brier_score": 0.5,
+      "reliability_bins": [
+        {
+          "average_confidence": 0.5,
+          "count": 12,
+          "empirical_accuracy": 0.5,
+          "lower": 0.5,
+          "upper": 0.6
+        }
+      ],
+      "scored_cases": 12,
+      "selective_accuracy": 0.0,
+      "unnecessary_abstentions": 0,
+      "unsupported_answer_rate": 0.0
+    },
+    "logged_expected_utility_h1": {
+      "abstained": 6,
+      "answered": 6,
+      "appropriate_abstentions": 1,
+      "average_investigation_cost": 0.08,
+      "correct_answers": 5,
+      "coverage": 0.5,
+      "expected_calibration_error": 0.043055555555555514,
+      "false_answer_rate": 0.08333333333333333,
+      "incorrect_answers": 1,
+      "log_loss": 0.457070038055887,
+      "multiclass_brier_score": 0.28195216049382715,
+      "reliability_bins": [
+        {
+          "average_confidence": 0.775,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8055555555555557,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.8,
+          "upper": 0.9
+        }
+      ],
+      "scored_cases": 12,
+      "selective_accuracy": 0.8333333333333334,
+      "unnecessary_abstentions": 5,
+      "unsupported_answer_rate": 0.0
+    },
+    "logged_fixed_order": {
+      "abstained": 6,
+      "answered": 6,
+      "appropriate_abstentions": 1,
+      "average_investigation_cost": 0.08,
+      "correct_answers": 5,
+      "coverage": 0.5,
+      "expected_calibration_error": 0.043055555555555514,
+      "false_answer_rate": 0.08333333333333333,
+      "incorrect_answers": 1,
+      "log_loss": 0.457070038055887,
+      "multiclass_brier_score": 0.28195216049382715,
+      "reliability_bins": [
+        {
+          "average_confidence": 0.775,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8055555555555557,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.8,
+          "upper": 0.9
+        }
+      ],
+      "scored_cases": 12,
+      "selective_accuracy": 0.8333333333333334,
+      "unnecessary_abstentions": 5,
+      "unsupported_answer_rate": 0.0
+    },
+    "logged_greedy_information_gain": {
+      "abstained": 6,
+      "answered": 6,
+      "appropriate_abstentions": 1,
+      "average_investigation_cost": 0.08,
+      "correct_answers": 5,
+      "coverage": 0.5,
+      "expected_calibration_error": 0.043055555555555514,
+      "false_answer_rate": 0.08333333333333333,
+      "incorrect_answers": 1,
+      "log_loss": 0.457070038055887,
+      "multiclass_brier_score": 0.28195216049382715,
+      "reliability_bins": [
+        {
+          "average_confidence": 0.775,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8055555555555557,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.8,
+          "upper": 0.9
+        }
+      ],
+      "scored_cases": 12,
+      "selective_accuracy": 0.8333333333333334,
+      "unnecessary_abstentions": 5,
+      "unsupported_answer_rate": 0.0
+    },
+    "logged_pomdp_h2": {
+      "abstained": 6,
+      "answered": 6,
+      "appropriate_abstentions": 1,
+      "average_investigation_cost": 0.08,
+      "correct_answers": 5,
+      "coverage": 0.5,
+      "expected_calibration_error": 0.043055555555555514,
+      "false_answer_rate": 0.08333333333333333,
+      "incorrect_answers": 1,
+      "log_loss": 0.457070038055887,
+      "multiclass_brier_score": 0.28195216049382715,
+      "reliability_bins": [
+        {
+          "average_confidence": 0.775,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.7,
+          "upper": 0.8
+        },
+        {
+          "average_confidence": 0.8055555555555557,
+          "count": 6,
+          "empirical_accuracy": 0.8333333333333334,
+          "lower": 0.8,
+          "upper": 0.9
+        }
+      ],
+      "scored_cases": 12,
+      "selective_accuracy": 0.8333333333333334,
+      "unnecessary_abstentions": 5,
+      "unsupported_answer_rate": 0.0
+    }
+  },
+  "validation_threshold_selection": {
+    "candidates": [
+      {
+        "coverage": 1.0,
+        "false_answer_rate": 0.16666666666666666,
+        "selective_accuracy": 0.8333333333333334,
+        "threshold": 0.6
+      },
+      {
+        "coverage": 1.0,
+        "false_answer_rate": 0.16666666666666666,
+        "selective_accuracy": 0.8333333333333334,
+        "threshold": 0.65
+      },
+      {
+        "coverage": 1.0,
+        "false_answer_rate": 0.16666666666666666,
+        "selective_accuracy": 0.8333333333333334,
+        "threshold": 0.7
+      },
+      {
+        "coverage": 1.0,
+        "false_answer_rate": 0.16666666666666666,
+        "selective_accuracy": 0.8333333333333334,
+        "threshold": 0.75
+      },
+      {
+        "coverage": 0.5,
+        "false_answer_rate": 0.08333333333333333,
+        "selective_accuracy": 0.8333333333333334,
+        "threshold": 0.8
+      },
+      {
+        "coverage": 0.0,
+        "false_answer_rate": 0.0,
+        "selective_accuracy": 0.0,
+        "threshold": 0.85
+      },
+      {
+        "coverage": 0.0,
+        "false_answer_rate": 0.0,
+        "selective_accuracy": 0.0,
+        "threshold": 0.9
+      }
+    ],
+    "selected": 0.8
+  }
+}

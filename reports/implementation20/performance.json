@@ -1,0 +1,45 @@
+{
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.15"
+  },
+  "concurrency": 1,
+  "fixture": "bounded synthetic in-memory graph; local SQLite",
+  "graph_lookup": {
+    "samples": 50,
+    "median_ms": 0.000300002284348011,
+    "p95_ms": 0.000500003807246685
+  },
+  "bayesian_update": {
+    "samples": 50,
+    "median_ms": 0.006600021151825786,
+    "p95_ms": 0.012199976481497288
+  },
+  "planner": {
+    "samples": 50,
+    "median_ms": 0.07639999967068434,
+    "p95_ms": 0.31720002880319953
+  },
+  "domain_validation": {
+    "samples": 50,
+    "median_ms": 0.02885001595132053,
+    "p95_ms": 0.07700000423938036
+  },
+  "duplicate_reconciliation": {
+    "samples": 50,
+    "median_ms": 0.06399999256245792,
+    "p95_ms": 0.07090001599863172
+  },
+  "durable_job_creation": {
+    "samples": 50,
+    "median_ms": 2.9681499872822315,
+    "p95_ms": 3.2851999858394265
+  },
+  "worker_jobs_per_second": 54.126689143693845,
+  "api_startup_ms_single_sample": 102.06489998381585,
+  "api_investigation": {
+    "samples": 20,
+    "median_ms": 14.091999997617677,
+    "p95_ms": 16.21629996225238
+  }
+}

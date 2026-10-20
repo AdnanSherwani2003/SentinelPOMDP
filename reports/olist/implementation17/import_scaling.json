@@ -1,0 +1,59 @@
+{
+  "stages": [
+    {
+      "environment": "DISPOSABLE_IN_MEMORY",
+      "orders_requested": 100,
+      "orders_imported": 100,
+      "duplicates_first": 0,
+      "duplicates_repeat": 100,
+      "rejected": 0,
+      "candidate_facts": 545,
+      "approved_candidates": 545,
+      "entities_write_attempts": 645,
+      "facts_write_attempts": 545,
+      "evidence_write_attempts": 215,
+      "elapsed_seconds": 16.654164199950173,
+      "orders_per_second": 6.004504266884746,
+      "peak_python_bytes": 105939491,
+      "resulting_graph_entities": 602,
+      "resulting_fact_edges": 545,
+      "resulting_evidence_records": 215,
+      "resulting_evidence_fact_links": 545,
+      "average_lookup_ms": 0.14815399947110564,
+      "p95_lookup_ms": 0.21689996356144547,
+      "database_storage_growth": "NOT_MEASURABLE_IN_DISPOSABLE_MEMORY",
+      "persistent_research_tenant_modified": false,
+      "review_store_path": "temporary-and-removed"
+    },
+    {
+      "environment": "DISPOSABLE_IN_MEMORY",
+      "orders_requested": 1000,
+      "orders_imported": 1000,
+      "duplicates_first": 0,
+      "duplicates_repeat": 1000,
+      "rejected": 0,
+      "candidate_facts": 5435,
+      "approved_candidates": 5435,
+      "entities_write_attempts": 6435,
+      "facts_write_attempts": 5435,
+      "evidence_write_attempts": 2145,
+      "elapsed_seconds": 153.4912852999987,
+      "orders_per_second": 6.515027860021499,
+      "peak_python_bytes": 106013155,
+      "resulting_graph_entities": 5609,
+      "resulting_fact_edges": 5435,
+      "resulting_evidence_records": 2145,
+      "resulting_evidence_fact_links": 5435,
+      "average_lookup_ms": 2.948761001462117,
+      "p95_lookup_ms": 5.002899968530983,
+      "database_storage_growth": "NOT_MEASURABLE_IN_DISPOSABLE_MEMORY",
+      "persistent_research_tenant_modified": false,
+      "review_store_path": "temporary-and-removed"
+    }
+  ],
+  "persistent_import_authorization": "NOT_GRANTED",
+  "persistent_orders_added": 0,
+  "limitations": [
+    "Disposable in-memory single-machine measurements do not establish production scalability."
+  ]
+}

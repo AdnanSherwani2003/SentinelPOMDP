@@ -1,0 +1,68 @@
+{
+  "domain_id": "shipment-timeliness",
+  "name": "Shipment timeliness pilot",
+  "claim_type": "shipment_timeliness",
+  "hypotheses": [
+    "delayed",
+    "on_time"
+  ],
+  "prior": {
+    "delayed": 0.5,
+    "on_time": 0.5
+  },
+  "actions": [
+    {
+      "action_id": "inspect_delivery",
+      "relation_hypotheses": {
+        "EXPERIENCED_DELAY": "delayed"
+      },
+      "cost": 0.08
+    }
+  ],
+  "observation_model": {
+    "inspect_delivery": {
+      "delayed": {
+        "EVIDENCE_SUPPORTED": 0.7631578947368421,
+        "EVIDENCE_CONTRADICTED": 0.23684210526315788
+      },
+      "on_time": {
+        "EVIDENCE_SUPPORTED": 0.18421052631578946,
+        "EVIDENCE_CONTRADICTED": 0.8157894736842105
+      }
+    }
+  },
+  "answer_threshold": 0.8,
+  "minimum_independent_sources": 1,
+  "status": "PROVISIONAL",
+  "model_version": "calibrated-synthetic-v1",
+  "calibration_note": "Estimated from training data only; approval requires independent review. Holdout metrics do not establish cross-organization validity.",
+  "approved_by": null,
+  "parameter_source": "EMPIRICALLY_ESTIMATED",
+  "calibration": {
+    "training_dataset_id": "representative-shipment-pilot",
+    "training_dataset_version": "synthetic-v1",
+    "split_manifest_strategy": "chronological_group_holdout",
+    "method": "categorical_counts_dirichlet_smoothing_wilson_intervals",
+    "sample_counts": {
+      "class:delayed": 18,
+      "class:on_time": 18,
+      "action:inspect_delivery:state:delayed": 18,
+      "action:inspect_delivery:state:on_time": 18
+    },
+    "validation_results": {
+      "brier_score": 0.28195216049382715,
+      "log_loss": 0.457070038055887,
+      "expected_calibration_error": 0.043055555555555514,
+      "coverage": 0.5,
+      "selective_accuracy": 0.8333333333333334,
+      "unsupported_answer_rate": 0.0
+    },
+    "status": "VALIDATED_ON_HOLDOUT",
+    "estimated_at": "2026-10-18T13:27:02.112526Z",
+    "effective_at": null,
+    "limitations": [
+      "Synthetic representative fixture; real-world calibration is pending.",
+      "Only logged actions are replayed; counterfactual policy effects are not identifiable."
+    ]
+  }
+}
